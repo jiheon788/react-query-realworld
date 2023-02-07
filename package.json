@@ -1,0 +1,65 @@
+{
+  "name": "react-query-realworld",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "JiHeon Park",
+    "email": "jiheon788@ajou.ac.kr"
+  },
+  "dependencies": {
+    "@craco/craco": "^7.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.11",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "axios": "^1.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.4",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.32.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.3",
+    "tsconfig-paths-webpack-plugin": "^4.0.0"
+  }
+}

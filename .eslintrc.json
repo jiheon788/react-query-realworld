@@ -1,0 +1,91 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "@types"]
+      }
+    }
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
+  "ignorePatterns": "craco.config.js",
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-unused-vars": "off",
+    "no-empty": "off",
+    "no-case-declarations": "off",
+    "react/prop-types": "off",
+    "no-empty-pattern": "off",
+    "no-fallthrough": "off",
+    "linebreak-style": "off",
+    "max-len": "off",
+    "no-shadow": "off",
+    "quotes": "off",
+    "semi": "off",
+    "import/extensions": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "arrow-body-style": "off",
+    "import/order": "off",
+    "no-trailing-spaces": "off",
+    "comma-dangle": "off",
+    "array-bracket-spacing": "off",
+    "no-else-return": "off",
+    "no-multi-spaces": "off",
+    "no-confusing-arrow": "off",
+    "arrow-parens": "off",
+    "eol-last": "off",
+    "import/newline-after-import": "off",
+    "padded-blocks": "off",
+    "no-multiple-empty-lines": "off",
+    "import/prefer-default-export": "off",
+    "operator-linebreak": "off",
+    "no-restricted-syntax": "off",
+    "prefer-const": "off",
+    "generator-star-spacing": "off",
+    "no-plusplus": "off",
+    "no-use-before-define": "off",
+    "no-param-reassign": "off",
+    "no-prototype-builtins": "off",
+    "prefer-template": "off",
+    "array-callback-return": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "jsx-a11y/label-has-associated-control": "off"
+  }
+}
