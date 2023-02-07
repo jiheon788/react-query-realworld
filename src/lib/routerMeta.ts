@@ -20,8 +20,23 @@ const routerMeta: RouterMetaType = {
     isShow: true,
   },
   SignUpPage: {
-    name: 'Sign un',
+    name: 'Sign up',
     path: '/signup',
+    isShow: true,
+  },
+  SettingPage: {
+    name: 'Setting',
+    path: '/setting',
+    isShow: true,
+  },
+  ArticlePage: {
+    name: 'Article',
+    path: '/article',
+    isShow: true,
+  },
+  ProfilePage: {
+    name: 'Profile',
+    path: '/profile',
     isShow: true,
   },
 };

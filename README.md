@@ -1,10 +1,10 @@
 # ![로고-002](https://user-images.githubusercontent.com/90181028/217143286-a023dd4b-f3a7-4218-8802-39a3bd2b15a8.png)
 
-> ### React + Rect Query codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### React + React Query codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 ### [Demo](https://react-recoil-realworld.vercel.app)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
-This codebase was created to demonstrate a fully fledged fullstack application built with **React + Recoil** including CRUD operations, authentication, routing, pagination, and more.
+This codebase was created to demonstrate a fully fledged fullstack application built with **React + React Query** including CRUD operations, authentication, routing, pagination, and more.
 
 We've gone to great lengths to adhere to the **React** community styleguides & best practices.
 
@@ -40,5 +40,9 @@ For more information on how to this works with other frontends/backends, head ov
   - Show basic user info
   - List of articles populated from author's created articles or author's favorited articles
 
+
+# Related reference of the Realworld app
+- Swagger: [https://api.realworld.io/api-docs/](https://api.realworld.io/api-docs/)
+- FE Specs: [https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates)
 
   [![Brought to you by Thinkster](https://raw.githubusercontent.com/gothinkster/realworld/master/media/end.png)](https://thinkster.io)
