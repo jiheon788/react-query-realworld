@@ -12,7 +12,7 @@ For more information on how to this works with other frontends/backends, head ov
 
 # Features
 
-- [ ] Authenticate users via JWT (login/signup pages + logout button on settings page)
+- [x] Authenticate users via JWT (login/signup pages + logout button on settings page)
 - [ ] CRU- users (sign up & settings page - no deleting required)
 - [ ] CRUD Articles
 - [ ] CR-D Comments on articles (no updating required)
