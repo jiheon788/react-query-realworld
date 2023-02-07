@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import useInputs from '@/lib/hooks/useInputs';
 import routerMeta from '@/lib/routerMeta';
 import token from '@/lib/token';
@@ -12,7 +13,7 @@ const SignInPage = () => {
     event.preventDefault();
     postLogin({ user: signIndata })
       .then((res) => {
-        token.setToken('jwtToken', res.data.user.token);
+        token.setToken(ACCESS_TOKEN_KEY, res.data.user.token);
         navigate('/');
       })
       .catch((err) => {

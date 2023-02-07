@@ -1,3 +1,4 @@
+import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import token from '@/lib/token';
 import { useNavigate } from 'react-router-dom';
 
@@ -5,7 +6,7 @@ const SettingPage = () => {
   const navigate = useNavigate();
 
   const onLogout = () => {
-    token.removeToken('jwtToken');
+    token.removeToken(ACCESS_TOKEN_KEY);
     navigate('/');
   };
 

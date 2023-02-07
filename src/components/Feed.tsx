@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 const Feed = () => {
   useEffect(() => {
-    getArticles();
+    getArticles({ limit: 10 });
   }, []);
 
   return (
