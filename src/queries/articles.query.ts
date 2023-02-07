@@ -3,6 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useGetArticlesQuery = () =>
   useQuery({
-    queryKey: ['getArticles'],
+    queryKey: ['articles'],
     queryFn: () => getArticles({}).then((res) => res.data.articles),
   });

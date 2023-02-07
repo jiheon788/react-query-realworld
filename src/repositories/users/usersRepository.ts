@@ -16,3 +16,10 @@ export const postRegister = async (data: { user: postRegisterParam }) => {
     data,
   });
 };
+
+export const getUser = async () => {
+  return await customAxios({
+    method: 'get',
+    url: `/user`,
+  });
+};

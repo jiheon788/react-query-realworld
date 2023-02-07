@@ -1,9 +1,15 @@
+import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
+import token from '@/lib/token';
 import axios from 'axios';
 
 const host = 'https://api.realworld.io/api';
+const jwtToken = token.getToken(ACCESS_TOKEN_KEY);
 
 export const customAxios = axios.create({
   baseURL: host,
+  headers: {
+    Authorization: jwtToken ? `Token ${jwtToken}` : '',
+  },
 });
 
 /**

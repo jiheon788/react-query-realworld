@@ -1,5 +1,7 @@
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
+import useInputs from '@/lib/hooks/useInputs';
 import token from '@/lib/token';
+import { useGetUserQuery } from '@/queries/user.query';
 import { useNavigate } from 'react-router-dom';
 
 const SettingPage = () => {
@@ -9,6 +11,13 @@ const SettingPage = () => {
     token.removeToken(ACCESS_TOKEN_KEY);
     navigate('/');
   };
+
+  const [userData, onChangeUserData] = useInputs({
+    email: '',
+    username: '',
+    bio: '',
+    password: '',
+  });
 
   return (
     <div className="settings-page">
