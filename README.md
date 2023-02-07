@@ -41,7 +41,8 @@ For more information on how to this works with other frontends/backends, head ov
   - List of articles populated from author's created articles or author's favorited articles
 
 
-# Related reference of the Realworld app
+# References
+- TanStack Query Docs: [https://tanstack.com/query/latest](https://tanstack.com/query/latest)
 - Swagger: [https://api.realworld.io/api-docs/](https://api.realworld.io/api-docs/)
 - FE Specs: [https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates)
 
