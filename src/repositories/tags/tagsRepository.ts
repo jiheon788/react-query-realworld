@@ -1,7 +1,7 @@
-import { customAxios } from '@/repositories';
+import CustomAxios from '@/lib/CustomAxios';
 
 export const getTags = async () => {
-  return await customAxios({
+  return await CustomAxios({
     method: 'get',
     url: `/tags`,
   });

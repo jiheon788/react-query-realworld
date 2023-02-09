@@ -5,7 +5,7 @@ import axios from 'axios';
 const host = 'https://api.realworld.io/api';
 const jwtToken = token.getToken(ACCESS_TOKEN_KEY);
 
-export const customAxios = axios.create({
+const CustomAxios = axios.create({
   baseURL: host,
   headers: {
     Authorization: jwtToken ? `Token ${jwtToken}` : '',
@@ -15,7 +15,7 @@ export const customAxios = axios.create({
 /**
  * 디버깅 코드
  */
-customAxios.interceptors.response.use(
+CustomAxios.interceptors.response.use(
   (response) => {
     console.log('response success: ', response);
     return response;
@@ -25,3 +25,5 @@ customAxios.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+export default CustomAxios;
