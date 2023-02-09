@@ -17,7 +17,7 @@ const routerMeta: RouterMetaType = {
 
   SettingPage: {
     name: 'Setting',
-    path: '/setting',
+    path: '/settings',
     isShow: true,
   },
   ArticlePage: {
@@ -32,12 +32,12 @@ const routerMeta: RouterMetaType = {
   },
   SignInPage: {
     name: 'Sign in',
-    path: '/signin',
+    path: '/login',
     isShow: true,
   },
   SignUpPage: {
     name: 'Sign up',
-    path: '/signup',
+    path: '/register',
     isShow: true,
   },
 };
