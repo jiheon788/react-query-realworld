@@ -10,9 +10,10 @@ const SettingPage = () => {
   const onLogout = () => {
     token.removeToken(ACCESS_TOKEN_KEY);
     navigate('/');
+    window.location.reload();
   };
 
-  const { data, isSuccess } = useGetUserQuery();
+  const { data, isSuccess, status } = useGetUserQuery();
 
   return (
     <div className="settings-page">
@@ -21,7 +22,7 @@ const SettingPage = () => {
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Your Settings</h1>
 
-            {isSuccess ? <SettingForm data={data} /> : <></>}
+            {isSuccess ? <SettingForm data={data} /> : <p className="text-xs-center">{status}</p>}
 
             <hr />
             <button type="button" className="btn btn-outline-danger" onClick={onLogout}>

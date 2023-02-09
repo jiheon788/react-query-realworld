@@ -15,6 +15,7 @@ const SignUpPage = () => {
       .then((res) => {
         token.setToken(ACCESS_TOKEN_KEY, res.data.user.token);
         navigate('/');
+        window.location.reload();
       })
       .catch((err) => {
         alert(JSON.stringify(err.response.data.errors || 'error'));

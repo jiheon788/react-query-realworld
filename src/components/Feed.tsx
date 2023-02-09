@@ -2,7 +2,7 @@ import { convertToDate } from '@/lib/utils';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 
 const Feed = () => {
-  const { data, isSuccess } = useGetArticlesQuery();
+  const { data, isSuccess, status } = useGetArticlesQuery();
 
   if (isSuccess) {
     return (
@@ -34,7 +34,7 @@ const Feed = () => {
     );
   }
 
-  return <></>;
+  return <p className="text-xs-center">{status}</p>;
 };
 
 export default Feed;
