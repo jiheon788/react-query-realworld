@@ -1,5 +1,5 @@
 import { customAxios } from '@/repositories';
-import { postLoginParam, postRegisterParam } from './usersRepository.param';
+import { postLoginParam, postRegisterParam, putUserParam } from './usersRepository.param';
 
 export const postLogin = async (data: { user: postLoginParam }) => {
   return await customAxios({
@@ -24,7 +24,7 @@ export const getUser = async () => {
   });
 };
 
-export const putUser = async (data: { user: postRegisterParam }) => {
+export const putUser = async (data: { user: putUserParam }) => {
   return await customAxios({
     method: 'put',
     url: '/user',
