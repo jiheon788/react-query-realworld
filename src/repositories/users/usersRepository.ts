@@ -23,3 +23,11 @@ export const getUser = async () => {
     url: `/user`,
   });
 };
+
+export const putUser = async (data: { user: postRegisterParam }) => {
+  return await customAxios({
+    method: 'put',
+    url: '/user',
+    data,
+  });
+};
