@@ -1,6 +1,6 @@
 import SettingForm from '@/components/SettingForm';
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
-import token from '@/lib/token';
+import token from '@/lib/Token';
 import { useGetUserQuery } from '@/queries/user.query';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const SettingPage = () => {
     window.location.reload();
   };
 
-  const { data, isSuccess, status } = useGetUserQuery();
+  const { data } = useGetUserQuery();
 
   return (
     <div className="settings-page">
@@ -21,9 +21,7 @@ const SettingPage = () => {
         <div className="row">
           <div className="col-md-6 offset-md-3 col-xs-12">
             <h1 className="text-xs-center">Your Settings</h1>
-
-            {isSuccess ? <SettingForm data={data} /> : <p className="text-xs-center">{status}</p>}
-
+            <SettingForm data={data} />
             <hr />
             <button type="button" className="btn btn-outline-danger" onClick={onLogout}>
               Or click here to logout.

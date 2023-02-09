@@ -1,16 +1,9 @@
 import { customAxios } from '@/repositories';
 import { getArticlesParam } from './ArticlesRepository.param';
 
-export const getArticles = async ({ tag, author, favorited, limit, offset }: getArticlesParam) => {
+export const getArticles = async ({ query }: getArticlesParam) => {
   return await customAxios({
     method: 'get',
-    url: `/articles`,
-    params: {
-      tag,
-      author,
-      favorited,
-      limit,
-      offset,
-    },
+    url: `/articles${query}`,
   });
 };

@@ -1,5 +1,5 @@
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
-import token from '@/lib/token';
+import token from '@/lib/Token';
 import axios from 'axios';
 
 const host = 'https://api.realworld.io/api';

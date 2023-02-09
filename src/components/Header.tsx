@@ -1,7 +1,7 @@
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import routerMeta, { IRouterMeta } from '@/lib/routerMeta';
-import token from '@/lib/token';
 import { Link, NavLink } from 'react-router-dom';
+import token from '@/lib/Token';
 
 const Header = () => {
   return (

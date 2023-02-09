@@ -1,6 +1,5 @@
 import Feed from '@/components/Feed';
 import useBoolean from '@/lib/hooks/useBoolean';
-import { getArticles } from '@/repositories/articles/ArticlesRepository';
 import { getTags } from '@/repositories/tags/tagsRepository';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
   const [isGlobal, onToggleIsGlobal] = useBoolean(true);
   const [tags, setTags] = useState([]);
+  const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
     getTags().then((res) => {
@@ -41,7 +41,7 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            <Feed />
+            <Feed url={isGlobal ? '' : '/feed'} selectedTag={selectedTag} />
           </div>
 
           <div className="col-md-3">
@@ -50,7 +50,14 @@ const HomePage = () => {
 
               <div className="tag-list">
                 {tags.map((tag: string) => (
-                  <Link to="/" key={tag} className="tag-pill tag-default">
+                  <Link
+                    to="/"
+                    key={tag}
+                    className="tag-pill tag-default"
+                    onClick={() => {
+                      setSelectedTag(tag);
+                    }}
+                  >
                     {tag}
                   </Link>
                 ))}

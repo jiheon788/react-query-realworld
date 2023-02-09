@@ -1,7 +1,7 @@
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import useInputs from '@/lib/hooks/useInputs';
 import routerMeta from '@/lib/routerMeta';
-import token from '@/lib/token';
+import token from '@/lib/Token';
 import { postLogin } from '@/repositories/users/usersRepository';
 import { Link, useNavigate } from 'react-router-dom';
 

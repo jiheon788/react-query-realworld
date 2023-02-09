@@ -20,13 +20,27 @@ const Router = () => (
         key={props.path}
         path={props.path}
         element={
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div style={{ textAlign: 'center' }}>
+                <h1 className="logo-font">Loading...</h1>
+              </div>
+            }
+          >
             <Component />
           </Suspense>
         }
         {...props}
       />
     ))}
+    <Route
+      path="/*"
+      element={
+        <div style={{ textAlign: 'center' }}>
+          <h1 className="logo-font">Not Found Page</h1>
+        </div>
+      }
+    />
   </Routes>
 );
 
