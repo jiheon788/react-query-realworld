@@ -3,6 +3,7 @@ import { convertToDate } from '@/lib/utils';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { useState, useEffect } from 'react';
 import queryClient from '@/lib/queryClient';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 interface IFeedProps {
   url: string;
@@ -10,6 +11,7 @@ interface IFeedProps {
 }
 
 const Feed = ({ url, selectedTag }: IFeedProps) => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState(url + `?limit=10&offset=0`);
 
   const { data } = useGetArticlesQuery(query);
@@ -23,7 +25,7 @@ const Feed = ({ url, selectedTag }: IFeedProps) => {
   return (
     <>
       {data.map((article: any) => (
-        <div className="article-preview" key={article.title}>
+        <div role="presentation" className="article-preview" key={article.title} onClick={() => console.log(article)}>
           <div className="article-meta">
             <a href="profile.html">
               <img src={article.author.image} alt="profile" />
@@ -38,11 +40,11 @@ const Feed = ({ url, selectedTag }: IFeedProps) => {
               <i className="ion-heart"></i> {article.favoritesCount}
             </button>
           </div>
-          <a href="/" className="preview-link">
+          <Link to={`/article/${article.slug}`} state={article.slug} className="preview-link">
             <h1>{article.title}</h1>
             <p>{article.description}</p>
             <span>Read more...</span>
-          </a>
+          </Link>
         </div>
       ))}
     </>

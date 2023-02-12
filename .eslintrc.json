@@ -86,6 +86,7 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/no-children-prop": "off"
   }
 }

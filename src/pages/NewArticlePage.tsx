@@ -45,7 +45,8 @@ const NewArticlePage = () => {
       {
         onSuccess: (res) => {
           queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLES_KEY] });
-          navigate(`/article/${res.data.article.slug}`);
+          const slug = res.data.article.slug;
+          navigate(`/article/${slug}`, { state: slug });
         },
       },
     );

@@ -33,8 +33,8 @@ const routerMeta: RouterMetaType = {
   },
   ArticlePage: {
     name: 'Article',
-    path: '/article',
-    isShow: true,
+    path: '/article/:slug',
+    isShow: false,
     isAuth: true,
   },
   ProfilePage: {
