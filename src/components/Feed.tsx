@@ -2,19 +2,11 @@ import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
 import { convertToDate } from '@/lib/utils';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { useState, useEffect } from 'react';
-import queryClient from '@/lib/QueryClient';
+import queryClient from '@/lib/queryClient';
 
 interface IFeedProps {
   url: string;
   selectedTag: string;
-}
-
-interface IParams {
-  tag: string;
-  author: string;
-  favorited: string;
-  limit: number;
-  offset: number;
 }
 
 const Feed = ({ url, selectedTag }: IFeedProps) => {
@@ -22,11 +14,11 @@ const Feed = ({ url, selectedTag }: IFeedProps) => {
 
   const { data } = useGetArticlesQuery(query);
 
-  useEffect(() => {
-    console.log(query);
-    setQuery(url + `?limit=10&offset=0&tag=${selectedTag}`);
-    queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLES_KEY] });
-  }, [query]);
+  // useEffect(() => {
+  //   console.log(query);
+  //   setQuery(url + `?limit=10&offset=0&tag=${selectedTag}`);
+  //   queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLES_KEY] });
+  // }, [query]);
 
   return (
     <>

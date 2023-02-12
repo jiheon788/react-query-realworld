@@ -1,31 +1,42 @@
-import CustomAxios from '@/lib/CustomAxios';
+import apiClient from '@/lib/apiClient';
 import { postLoginParam, postRegisterParam, putUserParam } from './usersRepository.param';
 
-export const postLogin = async (data: { user: postLoginParam }) => {
-  return await CustomAxios({
+export const postLogin = async ({ email, password }: postLoginParam) => {
+  return await apiClient({
     method: 'post',
     url: `/users/login`,
-    data,
+    data: {
+      user: {
+        email,
+        password,
+      },
+    },
   });
 };
 
-export const postRegister = async (data: { user: postRegisterParam }) => {
-  return await CustomAxios({
+export const postRegister = async ({ username, email, password }: postRegisterParam) => {
+  return await apiClient({
     method: 'post',
     url: `/users`,
-    data,
+    data: {
+      user: {
+        username,
+        email,
+        password,
+      },
+    },
   });
 };
 
 export const getUser = async () => {
-  return await CustomAxios({
+  return await apiClient({
     method: 'get',
     url: `/user`,
   });
 };
 
 export const putUser = async (data: { user: putUserParam }) => {
-  return await CustomAxios({
+  return await apiClient({
     method: 'put',
     url: '/user',
     data,

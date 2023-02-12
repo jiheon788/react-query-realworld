@@ -1,7 +1,7 @@
-import CustomAxios from '@/lib/CustomAxios';
+import apiClient from '@/lib/apiClient';
 
 export const getTags = async () => {
-  return await CustomAxios({
+  return await apiClient({
     method: 'get',
     url: `/tags`,
   });

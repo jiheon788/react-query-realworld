@@ -17,7 +17,7 @@ const routerMeta: RouterMetaType = {
     isShow: false,
     isAuth: false,
   },
-  EditorPage: {
+  NewArticlePage: {
     name: 'New Article',
     path: '/editor',
     isShow: true,

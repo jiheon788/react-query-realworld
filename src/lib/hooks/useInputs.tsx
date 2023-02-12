@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type DefaultType = {
-  [key: string]: string | number;
+  [key: string]: any;
 };
 
-type ReturnTypes = [any, (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void];
+type ReturnTypes = [
+  any,
+  (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void,
+  (value: any) => void,
+];
 
 const useInputs = (initialValue: DefaultType): ReturnTypes => {
   const [values, setValues] = useState(initialValue);
@@ -16,7 +20,11 @@ const useInputs = (initialValue: DefaultType): ReturnTypes => {
     });
   };
 
-  return [values, onChange];
+  useEffect(() => {
+    console.log(values);
+  }, [values]);
+
+  return [values, onChange, setValues];
 };
 
 export default useInputs;

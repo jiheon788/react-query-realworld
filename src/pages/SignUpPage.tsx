@@ -1,7 +1,7 @@
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import useInputs from '@/lib/hooks/useInputs';
 import routerMeta from '@/lib/routerMeta';
-import token from '@/lib/Token';
+import token from '@/lib/token';
 import { postRegister } from '@/repositories/users/usersRepository';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const SignUpPage = () => {
 
   const onRegister = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    postRegister({ user: signUpdata })
+    postRegister(signUpdata)
       .then((res) => {
         token.setToken(ACCESS_TOKEN_KEY, res.data.user.token);
         navigate('/');
