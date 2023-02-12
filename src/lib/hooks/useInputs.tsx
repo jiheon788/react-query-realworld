@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 type DefaultType = {
   [key: string]: any;
@@ -19,10 +19,6 @@ const useInputs = (initialValue: DefaultType): ReturnTypes => {
       [event.target.name]: event.target.value,
     });
   };
-
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
 
   return [values, onChange, setValues];
 };

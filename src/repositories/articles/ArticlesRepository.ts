@@ -10,7 +10,7 @@ export const getArticles = async ({ query }: getArticlesParam) => {
 
 export const postArticle = async ({ title, description, body, tagList }: postArticleParam) => {
   return await apiClient({
-    method: 'get',
+    method: 'post',
     url: `/articles`,
     data: {
       article: {
