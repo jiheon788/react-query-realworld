@@ -2,13 +2,16 @@ import React from 'react';
 import Header from '@/components/Header';
 import Router from './Router';
 import Footer from '@/components/Footer';
+import UserContextProvider from '@/contexts/UserContextProvider';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Router />
-      <Footer />
+      <UserContextProvider>
+        <Header />
+        <Router />
+        <Footer />
+      </UserContextProvider>
     </div>
   );
 }

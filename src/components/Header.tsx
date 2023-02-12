@@ -1,9 +1,14 @@
-import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
-import routerMeta, { IRouterMeta } from '@/lib/routerMeta';
+import routerMeta from '@/lib/routerMeta';
 import { Link, NavLink } from 'react-router-dom';
-import token from '@/lib/token';
+import UserHeader from './UserHeader';
+import NotUserHeader from './NotUserHeader';
+import { useContext } from 'react';
+import { isEmptyObj } from '@/lib/utils';
+import { UserContext } from '@/contexts/UserContextProvider';
 
 const Header = () => {
+  const { userState } = useContext(UserContext);
+
   return (
     <nav className="navbar navbar-light">
       <div className="container">
@@ -17,30 +22,7 @@ const Header = () => {
             </NavLink>
           </li>
 
-          {Object.keys(routerMeta).map((componentKey: string, index: number) => {
-            const menu: IRouterMeta = routerMeta[componentKey];
-
-            if (menu.isShow && token.getToken(ACCESS_TOKEN_KEY) && menu.isAuth)
-              return (
-                <li className="nav-item" key={menu.path}>
-                  <NavLink to={menu.path} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                    {menu.icon ? <i className={menu.icon}></i> : <></>}
-                    {menu.name}
-                  </NavLink>
-                </li>
-              );
-
-            if (menu.isShow && !token.getToken(ACCESS_TOKEN_KEY) && !menu.isAuth) {
-              return (
-                <li className="nav-item" key={menu.path}>
-                  <NavLink to={menu.path} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                    {menu.icon ? <i className={menu.icon}></i> : <></>}
-                    {menu.name}
-                  </NavLink>
-                </li>
-              );
-            }
-          })}
+          {isEmptyObj(userState) ? <NotUserHeader /> : <UserHeader />}
         </ul>
       </div>
     </nav>

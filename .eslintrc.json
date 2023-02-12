@@ -87,6 +87,7 @@
     "import/no-unresolved": "off",
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "jsx-a11y/label-has-associated-control": "off",
-    "react/no-children-prop": "off"
+    "react/no-children-prop": "off",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }

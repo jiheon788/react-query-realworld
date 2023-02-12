@@ -4,9 +4,13 @@ import routerMeta from '@/lib/routerMeta';
 import token from '@/lib/token';
 import { postLogin } from '@/repositories/users/usersRepository';
 import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '@/contexts/UserContextProvider';
 
 const SignInPage = () => {
   const [signIndata, onChangeSignInData] = useInputs({ email: '', password: '' });
+  const { setUserState } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const onLogin = (event: React.FormEvent<HTMLFormElement>) => {
@@ -14,8 +18,8 @@ const SignInPage = () => {
     postLogin(signIndata)
       .then((res) => {
         token.setToken(ACCESS_TOKEN_KEY, res.data.user.token);
+        setUserState(res.data.user);
         navigate('/');
-        window.location.reload();
       })
       .catch((err) => {
         alert(err.response.data.errors.email || err.response.data.errors['email or password'] || 'error');

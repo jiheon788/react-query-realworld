@@ -3,18 +3,20 @@ import token from '@/lib/token';
 import axios from 'axios';
 
 const host = 'https://api.realworld.io/api';
-const jwtToken = token.getToken(ACCESS_TOKEN_KEY);
 
 const apiClient = axios.create({
   baseURL: host,
-  headers: {
-    Authorization: jwtToken ? `Token ${jwtToken}` : '',
-  },
 });
 
-/**
- * 디버깅 코드
- */
+apiClient.interceptors.request.use((request: any) => {
+  const jwtToken: string | null = token.getToken(ACCESS_TOKEN_KEY);
+  if (jwtToken) {
+    request.headers['Authorization'] = `Token ${jwtToken}`;
+  }
+
+  return request;
+});
+
 apiClient.interceptors.response.use(
   (response) => {
     console.log('response success: ', response);

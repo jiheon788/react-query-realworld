@@ -3,14 +3,16 @@ import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import token from '@/lib/token';
 import { useGetUserQuery } from '@/queries/user.query';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '@/contexts/UserContextProvider';
 
 const SettingPage = () => {
   const navigate = useNavigate();
-
+  const { setUserState } = useContext(UserContext);
   const onLogout = () => {
     token.removeToken(ACCESS_TOKEN_KEY);
+    setUserState({});
     navigate('/');
-    window.location.reload();
   };
 
   const { data } = useGetUserQuery();
