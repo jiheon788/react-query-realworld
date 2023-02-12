@@ -8,7 +8,6 @@ const ArticlePage = () => {
   const { state } = useLocation();
   const { data } = useGetArticleQuery(state);
 
-  console.log(data);
   return (
     <div className="article-page">
       <div className="banner">
