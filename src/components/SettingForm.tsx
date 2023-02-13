@@ -5,7 +5,7 @@ import { usePutUserMutation } from '@/queries/user.query';
 import { useNavigate } from 'react-router-dom';
 
 interface ISettingFormProps {
-  data: any;
+  data: { [key: string]: string | number };
 }
 
 const SettingForm = ({ data }: ISettingFormProps) => {
