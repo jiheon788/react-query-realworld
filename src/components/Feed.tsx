@@ -11,7 +11,6 @@ interface IFeedProps {
 }
 
 const Feed = ({ url, selectedTag }: IFeedProps) => {
-  const navigate = useNavigate();
   const [query, setQuery] = useState(url + `?limit=10&offset=0`);
 
   const { data } = useGetArticlesQuery(query);
@@ -25,7 +24,7 @@ const Feed = ({ url, selectedTag }: IFeedProps) => {
   return (
     <>
       {data.map((article: any) => (
-        <div role="presentation" className="article-preview" key={article.title} onClick={() => console.log(article)}>
+        <div role="presentation" className="article-preview" key={article.title}>
           <div className="article-meta">
             <a href="profile.html">
               <img src={article.author.image} alt="profile" />

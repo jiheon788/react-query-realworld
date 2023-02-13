@@ -62,6 +62,7 @@ const SignUpPage = () => {
                   className="form-control form-control-lg"
                   type="password"
                   placeholder="Password"
+                  autoComplete="off"
                   name="password"
                   value={signUpdata.password}
                   onChange={onChangeSignUpData}

@@ -3,11 +3,10 @@ import { Link, NavLink } from 'react-router-dom';
 import UserHeader from './UserHeader';
 import NotUserHeader from './NotUserHeader';
 import { useContext } from 'react';
-import { isEmptyObj } from '@/lib/utils';
 import { UserContext } from '@/contexts/UserContextProvider';
 
 const Header = () => {
-  const { userState } = useContext(UserContext);
+  const { isLogin } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-light">
@@ -22,7 +21,7 @@ const Header = () => {
             </NavLink>
           </li>
 
-          {isEmptyObj(userState) ? <NotUserHeader /> : <UserHeader />}
+          {isLogin ? <UserHeader /> : <NotUserHeader />}
         </ul>
       </div>
     </nav>

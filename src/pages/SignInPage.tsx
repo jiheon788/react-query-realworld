@@ -9,7 +9,7 @@ import { UserContext } from '@/contexts/UserContextProvider';
 
 const SignInPage = () => {
   const [signIndata, onChangeSignInData] = useInputs({ email: '', password: '' });
-  const { setUserState } = useContext(UserContext);
+  const { setIsLogin } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const SignInPage = () => {
     postLogin(signIndata)
       .then((res) => {
         token.setToken(ACCESS_TOKEN_KEY, res.data.user.token);
-        setUserState(res.data.user);
+        setIsLogin(token.getToken(ACCESS_TOKEN_KEY));
         navigate('/');
       })
       .catch((err) => {
@@ -56,6 +56,7 @@ const SignInPage = () => {
                   className="form-control form-control-lg"
                   type="password"
                   placeholder="Password"
+                  autoComplete="off"
                   name="password"
                   value={signIndata.password}
                   onChange={onChangeSignInData}

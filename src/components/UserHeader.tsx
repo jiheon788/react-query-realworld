@@ -1,9 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '@/contexts/UserContextProvider';
+import { useGetUserQuery } from '@/queries/user.query';
 
 const UserHeader = () => {
-  const { userState } = useContext(UserContext);
+  const { data } = useGetUserQuery();
 
   return (
     <>
@@ -18,12 +17,9 @@ const UserHeader = () => {
         </NavLink>
       </li>
       <li className="nav-item">
-        <NavLink
-          to={`profile/${userState.username}`}
-          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-        >
-          <img className="user-pic" src={userState.image} alt="profile" />
-          {userState.username}
+        <NavLink to={`profile/${data.username}`} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          <img className="user-pic" src={data.image} alt="profile" />
+          {data.username}
         </NavLink>
       </li>
     </>
