@@ -11,7 +11,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 export const useGetArticlesQuery = (query: string) => {
   return useQuery({
     queryKey: [QUERY_ARTICLES_KEY, query],
-    queryFn: () => getArticles({ query }).then((res) => res.data.articles),
+    queryFn: () => getArticles({ query }).then((res) => res.data),
     keepPreviousData: true,
   });
 };

@@ -16,7 +16,7 @@ For more information on how to this works with other frontends/backends, head ov
 - [x] CRU- users (sign up & settings page - no deleting required)
 - [x] CRUD Articles
 - [ ] CR-D Comments on articles (no updating required)
-- [ ] GET and display paginated lists of articles
+- [x] GET and display paginated lists of articles
 - [ ] Favorite articles
 - [ ] Follow other users
 

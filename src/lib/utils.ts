@@ -19,3 +19,7 @@ export const convertToDate = (datetime: string) => {
 };
 
 export const isEmptyObj = (obj: object) => Object.keys(obj).length === 0;
+
+export const scrollToTop = () => {
+  window.scrollTo(0, 0);
+};

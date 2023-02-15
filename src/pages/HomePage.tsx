@@ -1,14 +1,17 @@
 import Feed from '@/components/Feed';
 import { getTags } from '@/repositories/tags/tagsRepository';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useGetArticlesQuery } from '@/queries/articles.query';
+import { scrollToTop } from '@/lib/utils';
+import { UNITS_PER_PAGE } from '@/constants/config.constants';
 
 const HomePage = () => {
+  const [page, setPage] = useState(1);
   const [isGlobal, setIsGlobal] = useState(true);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
-  const [query, setQuery] = useState(`?limit=10&offset=0`);
+  const [query, setQuery] = useState(`?limit=${UNITS_PER_PAGE}&offset=0`);
   const { data } = useGetArticlesQuery(query);
 
   useEffect(() => {
@@ -18,8 +21,12 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    setQuery(`${isGlobal ? '' : '/feed'}?limit=10&offset=0${selectedTag ? `&tag=${selectedTag}` : ''}`);
-  }, [isGlobal, selectedTag]);
+    setQuery(
+      `${isGlobal ? '' : '/feed'}?limit=${UNITS_PER_PAGE}&offset=${UNITS_PER_PAGE * (page - 1)}${
+        selectedTag ? `&tag=${selectedTag}` : ''
+      }`,
+    );
+  }, [isGlobal, selectedTag, page]);
 
   return (
     <div className="home-page">
@@ -47,9 +54,41 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            {data.map((article: any) => (
-              <Feed key={article.title} article={article} />
-            ))}
+            {data.articles.length !== 0 ? (
+              <>
+                {data.articles.map((article: any) => (
+                  <Feed key={article.title} article={article} />
+                ))}
+              </>
+            ) : (
+              <div>No articles are here... yet.</div>
+            )}
+
+            <nav>
+              <ul className="pagination">
+                {Array(data.articlesCount / UNITS_PER_PAGE)
+                  .fill(1)
+                  .map((_, i) => {
+                    const pageNo = i + 1;
+
+                    return (
+                      <li
+                        key={pageNo}
+                        role="presentation"
+                        className={`page-item ${page === pageNo ? 'active' : ''}`}
+                        onClick={() => {
+                          setPage(pageNo);
+                          scrollToTop();
+                        }}
+                      >
+                        <NavLink to="/" className="page-link">
+                          {pageNo}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </nav>
           </div>
 
           <div className="col-md-3">
