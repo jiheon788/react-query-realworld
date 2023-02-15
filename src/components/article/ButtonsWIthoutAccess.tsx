@@ -4,29 +4,15 @@ interface IButtonsWIthoutAccessProps {
 const ButtonsWIthoutAccess = ({ articleInfo }: IButtonsWIthoutAccessProps) => {
   return (
     <>
-      {articleInfo.author.following ? (
-        <button className="btn btn-sm btn-outline-primary">
-          <i className="ion-plus-round"></i>
-          &nbsp; Follow {articleInfo.author.username} <span className="counter">(10)</span>
-        </button>
-      ) : (
-        <button className="btn btn-sm btn-outline-secondary">
-          <i className="ion-plus-round"></i>
-          &nbsp; Follow {articleInfo.author.username} <span className="counter">(10)</span>
-        </button>
-      )}
+      <button className={`btn btn-sm btn-outline-${articleInfo.author.following ? 'primary' : 'secondary'}`}>
+        <i className="ion-plus-round"></i>
+        &nbsp; Follow {articleInfo.author.username} <span className="counter">(10)</span>
+      </button>
       &nbsp;&nbsp;
-      {articleInfo.favorited ? (
-        <button className="btn btn-sm btn-outline-primary">
-          <i className="ion-heart"></i>
-          &nbsp; Favorite Post <span className="counter">{articleInfo.favoritesCount}</span>
-        </button>
-      ) : (
-        <button className="btn btn-sm btn-outline-secondary">
-          <i className="ion-heart"></i>
-          &nbsp; Favorite Post <span className="counter">{articleInfo.favoritesCount}</span>
-        </button>
-      )}
+      <button className={`btn btn-sm btn-outline-${articleInfo.favorited ? 'primary' : 'secondary'}`}>
+        <i className="ion-heart"></i>
+        &nbsp; Favorite Post <span className="counter">{articleInfo.favoritesCount}</span>
+      </button>
     </>
   );
 };
