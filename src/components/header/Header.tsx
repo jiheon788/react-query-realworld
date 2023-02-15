@@ -1,7 +1,7 @@
 import routerMeta from '@/lib/routerMeta';
 import { Link, NavLink } from 'react-router-dom';
-import UserHeader from './UserHeader';
-import NotUserHeader from './NotUserHeader';
+import HeaderWithAccess from './HeaderWithAccess';
+import HeaderWithoutAccess from './HeaderWithoutAccess';
 import { useContext } from 'react';
 import { UserContext } from '@/contexts/UserContextProvider';
 
@@ -21,7 +21,7 @@ const Header = () => {
             </NavLink>
           </li>
 
-          {isLogin ? <UserHeader /> : <NotUserHeader />}
+          {isLogin ? <HeaderWithAccess /> : <HeaderWithoutAccess />}
         </ul>
       </div>
     </nav>

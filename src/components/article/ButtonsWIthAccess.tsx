@@ -1,4 +1,8 @@
-const ButtonsWIthAccess = () => {
+interface IButtonsWIthAccessProps {
+  articleInfo: { [key: string]: any };
+}
+
+const ButtonsWIthAccess = ({ articleInfo }: IButtonsWIthAccessProps) => {
   return (
     <>
       <button className="btn btn-sm btn-outline-secondary" type="button">

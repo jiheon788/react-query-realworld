@@ -1,18 +1,22 @@
 import { NavLink } from 'react-router-dom';
 import { useGetUserQuery } from '@/queries/user.query';
+import routerMeta from '@/lib/routerMeta';
 
-const UserHeader = () => {
+const HeaderWithAccess = () => {
   const { data } = useGetUserQuery();
 
   return (
     <>
       <li className="nav-item">
-        <NavLink to="/editor" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+        <NavLink
+          to={routerMeta.NewArticlePage.path}
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+        >
           <i className="ion-compose"></i> New Article
         </NavLink>
       </li>
       <li className="nav-item">
-        <NavLink to="/settings" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+        <NavLink to={routerMeta.SettingPage.path} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
           <i className="ion-gear-a"></i> Settings
         </NavLink>
       </li>
@@ -26,4 +30,4 @@ const UserHeader = () => {
   );
 };
 
-export default UserHeader;
+export default HeaderWithAccess;

@@ -18,7 +18,7 @@ const ButtonSelector = ({ articleInfo }: IButtonSelectorProps) => {
   return (
     <>
       {data.username === articleInfo.author.username ? (
-        <ButtonsWIthAccess />
+        <ButtonsWIthAccess articleInfo={articleInfo} />
       ) : (
         <ButtonsWIthoutAccess articleInfo={articleInfo} />
       )}
