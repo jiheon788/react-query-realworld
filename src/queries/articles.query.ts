@@ -1,14 +1,12 @@
 import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY } from '@/constants/query.constant';
-import { getArticle, getArticles, createArticle, updateArticle } from '@/repositories/articles/articlesRepository';
+import {
+  getArticle,
+  getArticles,
+  createArticle,
+  updateArticle,
+  deleteArticle,
+} from '@/repositories/articles/articlesRepository';
 import { useMutation, useQuery } from '@tanstack/react-query';
-
-interface IParams {
-  tag: string;
-  author: string;
-  favorited: string;
-  limit: number;
-  offset: number;
-}
 
 export const useGetArticlesQuery = (query: string) => {
   return useQuery({
@@ -28,3 +26,5 @@ export const useGetArticleQuery = (slug: string | any) => {
 export const useCreateArticleMutation = () => useMutation(createArticle);
 
 export const useUpdateArticleMutation = () => useMutation(updateArticle);
+
+export const useDeleteArticleMutation = () => useMutation(deleteArticle);

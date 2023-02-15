@@ -1,5 +1,11 @@
 import apiClient from '@/lib/apiClient';
-import { getArticlesParam, getArticleParam, createArticleParam, updateArticleParam } from './articlesRepository.param';
+import {
+  getArticlesParam,
+  getArticleParam,
+  createArticleParam,
+  updateArticleParam,
+  deleteArticleParam,
+} from './articlesRepository.param';
 
 export const getArticles = async ({ query }: getArticlesParam) => {
   return await apiClient({
@@ -42,5 +48,12 @@ export const updateArticle = async ({ slug, title, description, body, tagList }:
         tagList,
       },
     },
+  });
+};
+
+export const deleteArticle = async ({ slug }: deleteArticleParam) => {
+  return await apiClient({
+    method: 'delete',
+    url: `/articles/${slug}`,
   });
 };

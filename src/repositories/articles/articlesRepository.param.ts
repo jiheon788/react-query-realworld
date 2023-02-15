@@ -20,3 +20,7 @@ export interface updateArticleParam {
   body: string;
   tagList: string[];
 }
+
+export interface deleteArticleParam {
+  slug: string;
+}
