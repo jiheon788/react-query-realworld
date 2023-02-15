@@ -1,11 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import routerMeta from '@/lib/routerMeta';
+import routerMeta, { IRouterMeta } from '@/lib/routerMeta';
+import Loading from '@/components/Loading';
 
 const lazyImport = (pageName: string) => lazy(() => import(`@/pages/${pageName}`));
 
 const assignRouter = Object.keys(routerMeta).map((componentKey: string) => {
-  const props: any = routerMeta[componentKey];
+  const props: IRouterMeta = routerMeta[componentKey];
 
   return {
     Component: lazyImport(componentKey),
@@ -20,27 +21,12 @@ const Router = () => (
         key={props.path}
         path={props.path}
         element={
-          <Suspense
-            fallback={
-              <div style={{ textAlign: 'center' }}>
-                <h1 className="logo-font">Loading...</h1>
-              </div>
-            }
-          >
+          <Suspense fallback={<Loading />}>
             <Component />
           </Suspense>
         }
-        {...props}
       />
     ))}
-    <Route
-      path="/*"
-      element={
-        <div style={{ textAlign: 'center' }}>
-          <h1 className="logo-font">Not Found Page</h1>
-        </div>
-      }
-    />
   </Routes>
 );
 

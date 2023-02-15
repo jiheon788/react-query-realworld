@@ -1,19 +1,25 @@
 import Feed from '@/components/Feed';
-import useBoolean from '@/lib/hooks/useBoolean';
 import { getTags } from '@/repositories/tags/tagsRepository';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useGetArticlesQuery } from '@/queries/articles.query';
 
 const HomePage = () => {
-  const [isGlobal, onToggleIsGlobal] = useBoolean(true);
+  const [isGlobal, setIsGlobal] = useState(true);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
+  const [query, setQuery] = useState(`?limit=10&offset=0`);
+  const { data } = useGetArticlesQuery(query);
 
   useEffect(() => {
     getTags().then((res) => {
       setTags(res.data.tags);
     });
   }, []);
+
+  useEffect(() => {
+    setQuery(`${isGlobal ? '' : '/feed'}?limit=10&offset=0${selectedTag ? `&tag=${selectedTag}` : ''}`);
+  }, [isGlobal, selectedTag]);
 
   return (
     <div className="home-page">
@@ -30,18 +36,20 @@ const HomePage = () => {
             <div className="feed-toggle">
               <ul className="nav nav-pills outline-active">
                 <li className="nav-item">
-                  <Link className={`nav-link ${isGlobal ? '' : 'active'}`} to="/" onClick={onToggleIsGlobal}>
+                  <Link className={`nav-link ${isGlobal ? '' : 'active'}`} to="/" onClick={() => setIsGlobal(false)}>
                     Your Feed
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className={`nav-link ${isGlobal ? 'active' : ''}`} to="/" onClick={onToggleIsGlobal}>
+                  <Link className={`nav-link ${isGlobal ? 'active' : ''}`} to="/" onClick={() => setIsGlobal(true)}>
                     Global Feed
                   </Link>
                 </li>
               </ul>
             </div>
-            <Feed url={isGlobal ? '' : '/feed'} selectedTag={selectedTag} />
+            {data.map((article: any) => (
+              <Feed key={article.title} article={article} />
+            ))}
           </div>
 
           <div className="col-md-3">

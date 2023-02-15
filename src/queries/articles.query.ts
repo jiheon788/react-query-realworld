@@ -12,8 +12,9 @@ interface IParams {
 
 export const useGetArticlesQuery = (query: string) => {
   return useQuery({
-    queryKey: [QUERY_ARTICLES_KEY],
+    queryKey: [QUERY_ARTICLES_KEY, query],
     queryFn: () => getArticles({ query }).then((res) => res.data.articles),
+    keepPreviousData: true,
   });
 };
 
