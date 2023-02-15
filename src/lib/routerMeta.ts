@@ -16,6 +16,10 @@ const routerMeta: RouterMetaType = {
     name: 'New Article',
     path: '/editor',
   },
+  EditArticlePage: {
+    name: 'Edit Article',
+    path: '/editor/:slug',
+  },
   SettingPage: {
     name: 'Setting',
     path: '/settings',

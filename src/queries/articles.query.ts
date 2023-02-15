@@ -1,5 +1,5 @@
 import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY } from '@/constants/query.constant';
-import { getArticle, getArticles, postArticle } from '@/repositories/articles/articlesRepository';
+import { getArticle, getArticles, createArticle, updateArticle } from '@/repositories/articles/articlesRepository';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 interface IParams {
@@ -25,4 +25,6 @@ export const useGetArticleQuery = (slug: string | any) => {
   });
 };
 
-export const usePostArticleMutation = () => useMutation(postArticle);
+export const useCreateArticleMutation = () => useMutation(createArticle);
+
+export const useUpdateArticleMutation = () => useMutation(updateArticle);

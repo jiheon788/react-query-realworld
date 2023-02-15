@@ -39,7 +39,7 @@ const ArticlePage = () => {
         <div>
           {data.tagList.map((tag: string) => (
             <li key={tag} className="tag-default tag-pill tag-outline">
-              tag
+              {tag}
             </li>
           ))}
         </div>

@@ -1,17 +1,20 @@
 import useInputs from '@/lib/hooks/useInputs';
 import queryClient from '@/lib/queryClient';
-import { useCreateArticleMutation } from '@/queries/articles.query';
-import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
-import { useNavigate } from 'react-router-dom';
+import { useUpdateArticleMutation } from '@/queries/articles.query';
+import { QUERY_ARTICLE_KEY } from '@/constants/query.constant';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const NewArticlePage = () => {
+const EditArticlePage = () => {
+  const { state } = useLocation();
   const navigate = useNavigate();
+
   const [articleData, onChangeArticleData, setArticleData] = useInputs({
-    title: '',
-    description: '',
-    body: '',
+    slug: state.slug,
+    title: state.title,
+    description: state.description,
+    body: state.body,
     tag: '',
-    tagList: [],
+    tagList: state.tagList,
   });
 
   const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -35,18 +38,18 @@ const NewArticlePage = () => {
     setArticleData({ ...articleData, tagList: articleData.tagList.filter((tag: string) => tag !== target) });
   };
 
-  const createArticleMutation = useCreateArticleMutation();
+  const updateArticleMutation = useUpdateArticleMutation();
 
-  const onPublish = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { title, description, body, tagList } = articleData;
-    createArticleMutation.mutate(
-      { title, description, body, tagList },
+    const { slug, title, description, body, tagList } = articleData;
+    updateArticleMutation.mutate(
+      { slug, title, description, body, tagList },
       {
         onSuccess: (res) => {
-          queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLES_KEY] });
-          const slug = res.data.article.slug;
-          navigate(`/article/${slug}`, { state: slug });
+          queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLE_KEY] });
+          const newSlug = res.data.article.slug;
+          navigate(`/article/${newSlug}`, { state: newSlug });
         },
       },
     );
@@ -57,7 +60,7 @@ const NewArticlePage = () => {
       <div className="container page">
         <div className="row">
           <div className="col-md-10 offset-md-1 col-xs-12">
-            <form onSubmit={onPublish}>
+            <form onSubmit={onUpdate}>
               <fieldset>
                 <fieldset className="form-group">
                   <input
@@ -114,7 +117,7 @@ const NewArticlePage = () => {
                   ))}
                 </div>
                 <button className="btn btn-lg pull-xs-right btn-primary" type="submit">
-                  Publish Article
+                  Update Article
                 </button>
               </fieldset>
             </form>
@@ -125,4 +128,4 @@ const NewArticlePage = () => {
   );
 };
 
-export default NewArticlePage;
+export default EditArticlePage;
