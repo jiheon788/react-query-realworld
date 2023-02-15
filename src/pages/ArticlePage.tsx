@@ -3,6 +3,7 @@ import { useGetArticleQuery } from '@/queries/articles.query';
 import { useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import ButtonSelector from '@/components/article/ButtonSelector';
 
 const ArticlePage = () => {
   const { state } = useLocation();
@@ -24,36 +25,7 @@ const ArticlePage = () => {
               </a>
               <span className="date">{convertToDate(data.updatedAt)}</span>
             </div>
-            {data.author.following ? (
-              <button className="btn btn-sm btn-outline-primary">
-                <i className="ion-plus-round"></i>
-                &nbsp; Follow {data.author.username} <span className="counter">(10)</span>
-              </button>
-            ) : (
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-plus-round"></i>
-                &nbsp; Follow {data.author.username} <span className="counter">(10)</span>
-              </button>
-            )}
-            &nbsp;&nbsp;
-            {data.favorited ? (
-              <button className="btn btn-sm btn-outline-primary">
-                <i className="ion-heart"></i>
-                &nbsp; Favorite Post <span className="counter">{data.favoritesCount}</span>
-              </button>
-            ) : (
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-heart"></i>
-                &nbsp; Favorite Post <span className="counter">{data.favoritesCount}</span>
-              </button>
-            )}
-            <button className="btn btn-sm btn-outline-secondary" type="button">
-              <i className="ion-edit"></i>&nbsp; Edit Article
-            </button>
-            &nbsp;&nbsp;
-            <button className="btn btn-sm btn-outline-danger" type="button">
-              <i className="ion-trash-a"></i>&nbsp; Delete Article
-            </button>
+            <ButtonSelector articleInfo={data}></ButtonSelector>
           </div>
         </div>
       </div>
@@ -84,29 +56,7 @@ const ArticlePage = () => {
               </a>
               <span className="date">{convertToDate(data.updatedAt)}</span>
             </div>
-            {data.author.following ? (
-              <button className="btn btn-sm btn-outline-primary">
-                <i className="ion-plus-round"></i>
-                &nbsp; Follow {data.author.username} <span className="counter">(10)</span>
-              </button>
-            ) : (
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-plus-round"></i>
-                &nbsp; Follow {data.author.username} <span className="counter">(10)</span>
-              </button>
-            )}
-            &nbsp;&nbsp;
-            {data.favorited ? (
-              <button className="btn btn-sm btn-outline-primary">
-                <i className="ion-heart"></i>
-                &nbsp; Favorite Post <span className="counter">{data.favoritesCount}</span>
-              </button>
-            ) : (
-              <button className="btn btn-sm btn-outline-secondary">
-                <i className="ion-heart"></i>
-                &nbsp; Favorite Post <span className="counter">{data.favoritesCount}</span>
-              </button>
-            )}
+            <ButtonSelector articleInfo={data}></ButtonSelector>
           </div>
         </div>
 

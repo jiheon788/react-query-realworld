@@ -38,10 +38,10 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     const { message } = error;
-    const { status, statusText } = error.response;
+    const { status, data } = error.response;
     const { method, url } = error.config;
 
-    logOnDev(`🚨 [${method?.toUpperCase()}] ${url} | Error ${status} ${statusText} | ${message}`, error);
+    logOnDev(`🚨 [${method?.toUpperCase()}] ${url} | Error ${status} ${data?.message || ''} | ${message}`, error);
 
     return Promise.reject(error);
   },

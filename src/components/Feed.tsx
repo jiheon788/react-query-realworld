@@ -7,7 +7,7 @@ interface IFeedProps {
 
 const Feed = ({ article }: IFeedProps) => {
   return (
-    <div role="presentation" className="article-preview" key={article.title}>
+    <div role="presentation" className="article-preview">
       <div className="article-meta">
         <a href="profile.html">
           <img src={article.author.image} alt="profile" />

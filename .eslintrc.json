@@ -47,6 +47,7 @@
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/no-children-prop": "off",
     "@typescript-eslint/no-empty-function": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "warn"
   }
 }
