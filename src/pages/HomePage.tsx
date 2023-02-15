@@ -66,27 +66,25 @@ const HomePage = () => {
 
             <nav>
               <ul className="pagination">
-                {Array(data.articlesCount / UNITS_PER_PAGE)
-                  .fill(1)
-                  .map((_, index) => {
-                    const pageNo = index + 1;
-
-                    return (
-                      <li
-                        key={pageNo}
-                        role="presentation"
-                        className={`page-item ${page === pageNo ? 'active' : ''}`}
-                        onClick={() => {
-                          setPage(pageNo);
-                          scrollToTop();
-                        }}
-                      >
-                        <NavLink to="/" className="page-link">
-                          {pageNo}
-                        </NavLink>
-                      </li>
-                    );
-                  })}
+                {data.articlesCount > UNITS_PER_PAGE ? (
+                  Array.from(Array(data.articlesCount / UNITS_PER_PAGE).keys()).map((index) => (
+                    <li
+                      key={index + 1}
+                      role="presentation"
+                      className={`page-item ${page === index + 1 ? 'active' : ''}`}
+                      onClick={() => {
+                        setPage(index + 1);
+                        scrollToTop();
+                      }}
+                    >
+                      <NavLink to="/" className="page-link">
+                        {index + 1}
+                      </NavLink>
+                    </li>
+                  ))
+                ) : (
+                  <></>
+                )}
               </ul>
             </nav>
           </div>
