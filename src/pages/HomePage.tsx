@@ -68,8 +68,8 @@ const HomePage = () => {
               <ul className="pagination">
                 {Array(data.articlesCount / UNITS_PER_PAGE)
                   .fill(1)
-                  .map((_, i) => {
-                    const pageNo = i + 1;
+                  .map((_, index) => {
+                    const pageNo = index + 1;
 
                     return (
                       <li
