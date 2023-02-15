@@ -67,7 +67,7 @@ const HomePage = () => {
             <nav>
               <ul className="pagination">
                 {data.articlesCount > UNITS_PER_PAGE ? (
-                  Array.from(Array(data.articlesCount / UNITS_PER_PAGE).keys()).map((index) => (
+                  Array.from(Array((data.articlesCount / UNITS_PER_PAGE).toFixed()).keys()).map((index) => (
                     <li
                       key={index + 1}
                       role="presentation"

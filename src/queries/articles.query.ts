@@ -18,7 +18,7 @@ export const useGetArticlesQuery = (query: string) => {
 
 export const useGetArticleQuery = (slug: string | any) => {
   return useQuery({
-    queryKey: [QUERY_ARTICLE_KEY],
+    queryKey: [QUERY_ARTICLE_KEY, slug],
     queryFn: () => getArticle({ slug }).then((res) => res.data.article),
   });
 };
