@@ -1,12 +1,13 @@
-import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY, QUERY_COMMENTS_KEY } from '@/constants/query.constant';
 import {
   getArticle,
   getArticles,
   createArticle,
   updateArticle,
   deleteArticle,
+  getComments,
 } from '@/repositories/articles/articlesRepository';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 
 export const useGetArticlesQuery = (query: string) => {
   return useQuery({
@@ -16,10 +17,20 @@ export const useGetArticlesQuery = (query: string) => {
   });
 };
 
-export const useGetArticleQuery = (slug: string | any) => {
-  return useQuery({
-    queryKey: [QUERY_ARTICLE_KEY, slug],
-    queryFn: () => getArticle({ slug }).then((res) => res.data.article),
+export const useGetArticleQueries = (slug: string) => {
+  return useQueries({
+    queries: [
+      {
+        queryKey: [QUERY_ARTICLE_KEY, slug],
+        queryFn: () => getArticle({ slug }).then((res) => res.data.article),
+        staleTime: Infinity,
+      },
+      {
+        queryKey: [QUERY_COMMENTS_KEY, slug],
+        queryFn: () => getComments({ slug }).then((res) => res.data.comments),
+        staleTime: Infinity,
+      },
+    ],
   });
 };
 

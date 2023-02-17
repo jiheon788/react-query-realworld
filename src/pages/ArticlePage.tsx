@@ -1,5 +1,5 @@
 import { convertToDate } from '@/lib/utils';
-import { useGetArticleQuery } from '@/queries/articles.query';
+import { useGetArticleQueries } from '@/queries/articles.query';
 import { useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -7,25 +7,26 @@ import ButtonSelector from '@/components/article/ButtonSelector';
 
 const ArticlePage = () => {
   const { state } = useLocation();
-  const { data } = useGetArticleQuery(state);
+  const [article, comments] = useGetArticleQueries(state);
 
+  console.log(comments);
   return (
     <div className="article-page">
       <div className="banner">
         <div className="container">
-          <h1>{data.title}</h1>
+          <h1>{article.data.title}</h1>
 
           <div className="article-meta">
             <a href="/">
-              <img src={data.author.image} alt="comment-author" />
+              <img src={article.data.author.image} alt="comment-author" />
             </a>
             <div className="info">
               <a href="/" className="author">
-                {data.author.username}
+                {article.data.author.username}
               </a>
-              <span className="date">{convertToDate(data.updatedAt)}</span>
+              <span className="date">{convertToDate(article.data.updatedAt)}</span>
             </div>
-            <ButtonSelector articleInfo={data}></ButtonSelector>
+            <ButtonSelector articleInfo={article.data}></ButtonSelector>
           </div>
         </div>
       </div>
@@ -33,11 +34,11 @@ const ArticlePage = () => {
       <div className="container page">
         <div className="row article-content">
           <div className="col-md-12">
-            <ReactMarkdown children={data.body} remarkPlugins={[remarkGfm]}></ReactMarkdown>
+            <ReactMarkdown children={article.data.body} remarkPlugins={[remarkGfm]}></ReactMarkdown>
           </div>
         </div>
         <div>
-          {data.tagList.map((tag: string) => (
+          {article.data.tagList.map((tag: string) => (
             <li key={tag} className="tag-default tag-pill tag-outline">
               {tag}
             </li>
@@ -48,15 +49,15 @@ const ArticlePage = () => {
         <div className="article-actions">
           <div className="article-meta">
             <a href="profile.html">
-              <img src={data.author.image} alt="profile" />
+              <img src={article.data.author.image} alt="profile" />
             </a>
             <div className="info">
               <a href="/" className="author">
-                {data.author.username}
+                {article.data.author.username}
               </a>
-              <span className="date">{convertToDate(data.updatedAt)}</span>
+              <span className="date">{convertToDate(article.data.updatedAt)}</span>
             </div>
-            <ButtonSelector articleInfo={data}></ButtonSelector>
+            <ButtonSelector articleInfo={article.data}></ButtonSelector>
           </div>
         </div>
 
@@ -72,7 +73,7 @@ const ArticlePage = () => {
               </div>
             </form>
 
-            {/* <div className="card">
+            <div className="card">
               <div className="card-block">
                 <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
               </div>
@@ -106,7 +107,7 @@ const ArticlePage = () => {
                   <i className="ion-trash-a"></i>
                 </span>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

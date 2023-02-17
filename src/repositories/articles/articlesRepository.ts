@@ -5,6 +5,7 @@ import {
   createArticleParam,
   updateArticleParam,
   deleteArticleParam,
+  getCommentsParam,
 } from './articlesRepository.param';
 
 export const getArticles = async ({ query }: getArticlesParam) => {
@@ -55,5 +56,12 @@ export const deleteArticle = async ({ slug }: deleteArticleParam) => {
   return await apiClient({
     method: 'delete',
     url: `/articles/${slug}`,
+  });
+};
+
+export const getComments = async ({ slug }: getCommentsParam) => {
+  return await apiClient({
+    method: 'get',
+    url: `/articles/${slug}/comments`,
   });
 };

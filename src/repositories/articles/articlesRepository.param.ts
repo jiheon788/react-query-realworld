@@ -24,3 +24,7 @@ export interface updateArticleParam {
 export interface deleteArticleParam {
   slug: string;
 }
+
+export interface getCommentsParam {
+  slug: string;
+}
