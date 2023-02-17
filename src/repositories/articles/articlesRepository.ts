@@ -6,6 +6,7 @@ import {
   updateArticleParam,
   deleteArticleParam,
   getCommentsParam,
+  createCommentsParam,
 } from './articlesRepository.param';
 
 export const getArticles = async ({ query }: getArticlesParam) => {
@@ -63,5 +64,17 @@ export const getComments = async ({ slug }: getCommentsParam) => {
   return await apiClient({
     method: 'get',
     url: `/articles/${slug}/comments`,
+  });
+};
+
+export const createComments = async ({ slug, body }: createCommentsParam) => {
+  return await apiClient({
+    method: 'post',
+    url: `/articles/${slug}/comments`,
+    data: {
+      comment: {
+        body,
+      },
+    },
   });
 };

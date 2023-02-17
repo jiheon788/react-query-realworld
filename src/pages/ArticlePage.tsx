@@ -1,15 +1,19 @@
 import { convertToDate } from '@/lib/utils';
 import { useGetArticleQueries } from '@/queries/articles.query';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ButtonSelector from '@/components/article/ButtonSelector';
+import { useContext } from 'react';
+import { UserContext } from '@/contexts/UserContextProvider';
+import Comment from '@/components/article/Comment';
+import routerMeta from '@/lib/routerMeta';
 
 const ArticlePage = () => {
   const { state } = useLocation();
   const [article, comments] = useGetArticleQueries(state);
+  const { isLogin } = useContext(UserContext);
 
-  console.log(comments);
   return (
     <div className="article-page">
       <div className="banner">
@@ -60,54 +64,18 @@ const ArticlePage = () => {
             <ButtonSelector articleInfo={article.data}></ButtonSelector>
           </div>
         </div>
-
         <div className="row">
           <div className="col-xs-12 col-md-8 offset-md-2">
-            <form className="card comment-form">
-              <div className="card-block">
-                <textarea className="form-control" placeholder="Write a comment..." rows={3}></textarea>
-              </div>
-              <div className="card-footer">
-                <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" alt="comment-author" />
-                <button className="btn btn-sm btn-primary">Post Comment</button>
-              </div>
-            </form>
-
-            <div className="card">
-              <div className="card-block">
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <div className="card-footer">
-                <a href="/" className="comment-author">
-                  <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" alt="comment-author" />
-                </a>
-                &nbsp;
-                <a href="/" className="comment-author">
-                  Jacob Schmidt
-                </a>
-                <span className="date-posted">Dec 29th</span>
-              </div>
-            </div>
-
-            <div className="card">
-              <div className="card-block">
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              </div>
-              <div className="card-footer">
-                <a href="/" className="comment-author">
-                  <img src="http://i.imgur.com/Qr71crq.jpg" className="comment-author-img" alt="comment-author" />
-                </a>
-                &nbsp;
-                <a href="/" className="comment-author">
-                  Jacob Schmidt
-                </a>
-                <span className="date-posted">Dec 29th</span>
-                <span className="mod-options">
-                  <i className="ion-edit"></i>
-                  <i className="ion-trash-a"></i>
-                </span>
-              </div>
-            </div>
+            {isLogin ? (
+              <Comment comments={comments.data} slug={article.data.slug} />
+            ) : (
+              <p>
+                <Link to={routerMeta.SignInPage.path}>Sign in</Link>
+                &nbsp;or&nbsp;
+                <Link to={routerMeta.SignUpPage.path}>Sign up</Link>
+                &nbsp;to add comments on this article.
+              </p>
+            )}
           </div>
         </div>
       </div>

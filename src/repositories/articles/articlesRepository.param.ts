@@ -28,3 +28,8 @@ export interface deleteArticleParam {
 export interface getCommentsParam {
   slug: string;
 }
+
+export interface createCommentsParam {
+  slug: string;
+  body: string;
+}
