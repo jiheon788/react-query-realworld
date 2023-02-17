@@ -1,18 +1,17 @@
 import { UNITS_PER_PAGE } from '@/constants/config.constants';
 import { scrollToTop } from '@/lib/utils';
 import { useGetArticlesQuery } from '@/queries/articles.query';
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import Feed from '../Feed';
+import Feed from './Feed';
 
 interface IFeedListProps {
   query: string;
   toUrl: string;
+  page: number;
+  setPage: (page: number) => void;
 }
 
-const FeedList = ({ query, toUrl }: IFeedListProps) => {
-  const [page, setPage] = useState(1);
-
+const FeedList = ({ query, toUrl, page, setPage }: IFeedListProps) => {
   const { data } = useGetArticlesQuery(query);
 
   return (

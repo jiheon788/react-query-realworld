@@ -1,4 +1,4 @@
-import Feed from '@/components/Feed';
+import Feed from '@/components/feed/Feed';
 import { getTags } from '@/repositories/tags/tagsRepository';
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -13,7 +13,6 @@ const HomePage = () => {
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
   const [query, setQuery] = useState(`?limit=${UNITS_PER_PAGE}&offset=0`);
-  const { data } = useGetArticlesQuery(query);
 
   useEffect(() => {
     getTags().then((res) => {
@@ -57,7 +56,7 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            <FeedList query={query} toUrl={'/'} />
+            <FeedList query={query} toUrl={'/'} page={page} setPage={setPage} />
           </div>
 
           <div className="col-md-3">
