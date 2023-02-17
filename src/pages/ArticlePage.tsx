@@ -21,13 +21,18 @@ const ArticlePage = () => {
           <h1>{article.data.title}</h1>
 
           <div className="article-meta">
-            <a href="/">
+            <Link to={`/profile/${article.data.author.username}`} state={article.data.author.username}>
               <img src={article.data.author.image} alt="comment-author" />
-            </a>
+            </Link>
+
             <div className="info">
-              <a href="/" className="author">
+              <Link
+                to={`/profile/${article.data.author.username}`}
+                state={article.data.author.username}
+                className="author"
+              >
                 {article.data.author.username}
-              </a>
+              </Link>
               <span className="date">{convertToDate(article.data.updatedAt)}</span>
             </div>
             <ButtonSelector articleInfo={article.data}></ButtonSelector>
@@ -52,13 +57,17 @@ const ArticlePage = () => {
 
         <div className="article-actions">
           <div className="article-meta">
-            <a href="profile.html">
+            <Link to={`/profile/${article.data.author.username}`} state={article.data.author.username}>
               <img src={article.data.author.image} alt="profile" />
-            </a>
+            </Link>
             <div className="info">
-              <a href="/" className="author">
+              <Link
+                to={`/profile/${article.data.author.username}`}
+                state={article.data.author.username}
+                className="author"
+              >
                 {article.data.author.username}
-              </a>
+              </Link>
               <span className="date">{convertToDate(article.data.updatedAt)}</span>
             </div>
             <ButtonSelector articleInfo={article.data}></ButtonSelector>

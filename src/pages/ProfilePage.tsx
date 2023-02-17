@@ -1,18 +1,22 @@
+import { useGetProfileQuery } from '@/queries/profiles.query';
+import { useLocation } from 'react-router-dom';
+
 const ProfilePage = () => {
+  const { state } = useLocation();
+  const { data } = useGetProfileQuery(state);
+  console.log(data);
   return (
     <div className="profile-page">
       <div className="user-info">
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-10 offset-md-1">
-              <img alt="profile" src="http://i.imgur.com/Qr71crq.jpg" className="user-img" />
-              <h4>Eric Simons</h4>
-              <p>
-                Cofounder @GoThinkster, lived in Aol`s HQ for a few months, kinda looks like Peeta from the Hunger Games
-              </p>
-              <button className="btn btn-sm btn-outline-secondary action-btn">
+              <img alt="profile" src={data.image} className="user-img" />
+              <h4>{data.username}</h4>
+              <p>{data.bio}</p>
+              <button className={`btn btn-sm btn-outline-${data.following ? 'primary' : 'secondary'} action-btn`}>
                 <i className="ion-plus-round"></i>
-                &nbsp; Follow Eric Simons
+                &nbsp; Follow {data.username}
               </button>
             </div>
           </div>
