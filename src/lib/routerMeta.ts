@@ -30,7 +30,7 @@ const routerMeta: RouterMetaType = {
   },
   ProfilePage: {
     name: 'Profile',
-    path: '/profile/:username',
+    path: '/profile/:username/*',
   },
   SignInPage: {
     name: 'Sign in',

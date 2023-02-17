@@ -1,27 +1,21 @@
-import { useGetProfileQuery } from '@/queries/profiles.query';
-import { useLocation } from 'react-router-dom';
+import { useGetProfileQueries } from '@/queries/profiles.query';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { UNITS_PER_PAGE } from '@/constants/config.constants';
+import Profile from '@/components/Profile';
 
 const ProfilePage = () => {
   const { state } = useLocation();
-  const { data } = useGetProfileQuery(state);
-  console.log(data);
+  const [isMine, setIsMine] = useState(true);
+
+  const [query, setQuery] = useState(`?limit=${UNITS_PER_PAGE}&offset=0&author=${state}`);
+
+  const [profiles, articles] = useGetProfileQueries(state, query);
+
+  console.log(profiles, articles);
   return (
     <div className="profile-page">
-      <div className="user-info">
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-md-10 offset-md-1">
-              <img alt="profile" src={data.image} className="user-img" />
-              <h4>{data.username}</h4>
-              <p>{data.bio}</p>
-              <button className={`btn btn-sm btn-outline-${data.following ? 'primary' : 'secondary'} action-btn`}>
-                <i className="ion-plus-round"></i>
-                &nbsp; Follow {data.username}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Profile profile={profiles.data} />
 
       <div className="container">
         <div className="row">
@@ -29,14 +23,23 @@ const ProfilePage = () => {
             <div className="articles-toggle">
               <ul className="nav nav-pills outline-active">
                 <li className="nav-item">
-                  <a className="nav-link active" href="/">
+                  <NavLink
+                    className={`nav-link ${isMine ? 'active' : ''}`}
+                    onClick={() => setIsMine(false)}
+                    end
+                    to={`/profile`}
+                  >
                     My Articles
-                  </a>
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/">
+                  <p
+                    role="presentation"
+                    className={`nav-link ${isMine ? '' : 'active'}`}
+                    onClick={() => setIsMine(true)}
+                  >
                     Favorited Articles
-                  </a>
+                  </p>
                 </li>
               </ul>
             </div>

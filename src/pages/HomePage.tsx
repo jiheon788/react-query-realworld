@@ -5,6 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { scrollToTop } from '@/lib/utils';
 import { UNITS_PER_PAGE } from '@/constants/config.constants';
+import FeedList from '@/components/feed/FeedList';
 
 const HomePage = () => {
   const [page, setPage] = useState(1);
@@ -56,41 +57,7 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            {data.articles.length !== 0 ? (
-              <>
-                {data.articles.map((article: any) => (
-                  <Feed key={article.title} article={article} />
-                ))}
-              </>
-            ) : (
-              <div>No articles are here... yet.</div>
-            )}
-
-            <nav>
-              <ul className="pagination">
-                {data.articlesCount > UNITS_PER_PAGE ? (
-                  Array.from({ length: Number((data.articlesCount / UNITS_PER_PAGE).toFixed()) }, (_, i) => i + 1).map(
-                    (index) => (
-                      <li
-                        key={index}
-                        role="presentation"
-                        className={`page-item ${page === index ? 'active' : ''}`}
-                        onClick={() => {
-                          setPage(index);
-                          scrollToTop();
-                        }}
-                      >
-                        <NavLink to="/" className="page-link">
-                          {index}
-                        </NavLink>
-                      </li>
-                    ),
-                  )
-                ) : (
-                  <></>
-                )}
-              </ul>
-            </nav>
+            <FeedList query={query} toUrl={'/'} />
           </div>
 
           <div className="col-md-3">
