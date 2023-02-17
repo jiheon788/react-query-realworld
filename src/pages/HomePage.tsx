@@ -21,11 +21,13 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    setQuery(
-      `${isGlobal ? '' : '/feed'}?limit=${UNITS_PER_PAGE}&offset=${UNITS_PER_PAGE * (page - 1)}${
-        selectedTag ? `&tag=${selectedTag}` : ''
-      }`,
-    );
+    if (isGlobal) {
+      setQuery(
+        `?limit=${UNITS_PER_PAGE}&offset=${UNITS_PER_PAGE * (page - 1)}${selectedTag ? `&tag=${selectedTag}` : ''}`,
+      );
+    } else {
+      setQuery(`/feed?limit=${UNITS_PER_PAGE}&offset=${UNITS_PER_PAGE * (page - 1)}`);
+    }
   }, [isGlobal, selectedTag, page]);
 
   return (
