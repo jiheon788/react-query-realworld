@@ -1,11 +1,55 @@
 import { convertToDate } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { useFavoriteArticleMutation, useUnfavoriteArticleMutation } from '@/queries/articles.query';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '@/contexts/UserContextProvider';
+import routerMeta from '@/lib/routerMeta';
+import queryClient from '@/lib/queryClient';
+import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
 
 interface IFeedProps {
   article: { [key: string]: any };
 }
 
 const Feed = ({ article }: IFeedProps) => {
+  const { isLogin } = useContext(UserContext);
+  const navigate = useNavigate();
+  const favoriteArticleMutation = useFavoriteArticleMutation();
+  const unfavoriteArticleMutation = useUnfavoriteArticleMutation();
+
+  const onToggleFavorite = () => {
+    const { slug } = article;
+
+    if (!isLogin) {
+      navigate(routerMeta.SignInPage.path);
+      return;
+    }
+
+    if (article.favorited) {
+      unfavoriteArticleMutation.mutate(
+        { slug },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLES_KEY] });
+          },
+        },
+      );
+      return;
+    }
+
+    if (!article.favorited) {
+      favoriteArticleMutation.mutate(
+        { slug },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: [QUERY_ARTICLES_KEY] });
+          },
+        },
+      );
+      return;
+    }
+  };
+
   return (
     <div role="presentation" className="article-preview">
       <div className="article-meta">
@@ -18,7 +62,11 @@ const Feed = ({ article }: IFeedProps) => {
           </a>
           <span className="date">{convertToDate(article.createdAt)}</span>
         </div>
-        <button className={`btn ${article.favorited ? 'btn-primary' : 'btn-outline-primary'} btn-sm pull-xs-right`}>
+        <button
+          type="button"
+          className={`btn ${article.favorited ? 'btn-primary' : 'btn-outline-primary'} btn-sm pull-xs-right`}
+          onClick={() => onToggleFavorite()}
+        >
           <i className="ion-heart"></i> {article.favoritesCount}
         </button>
       </div>

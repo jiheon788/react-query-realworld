@@ -38,3 +38,7 @@ export interface deleteCommentParam {
   slug: string;
   id: number;
 }
+
+export interface favoriteParam {
+  slug: string;
+}

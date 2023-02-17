@@ -8,6 +8,8 @@ import {
   getComments,
   createComment,
   deleteComment,
+  favoriteArticle,
+  unfavoriteArticle,
 } from '@/repositories/articles/articlesRepository';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 
@@ -45,3 +47,7 @@ export const useDeleteArticleMutation = () => useMutation(deleteArticle);
 export const useCreateCommentMutation = () => useMutation(createComment);
 
 export const useDeleteCommentMutation = () => useMutation(deleteComment);
+
+export const useFavoriteArticleMutation = () => useMutation(favoriteArticle);
+
+export const useUnfavoriteArticleMutation = () => useMutation(unfavoriteArticle);

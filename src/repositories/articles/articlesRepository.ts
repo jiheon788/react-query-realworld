@@ -8,6 +8,7 @@ import {
   getCommentsParam,
   createCommentParam,
   deleteCommentParam,
+  favoriteParam,
 } from './articlesRepository.param';
 
 export const getArticles = async ({ query }: getArticlesParam) => {
@@ -84,5 +85,19 @@ export const deleteComment = async ({ slug, id }: deleteCommentParam) => {
   return await apiClient({
     method: 'delete',
     url: `/articles/${slug}/comments/${id}`,
+  });
+};
+
+export const favoriteArticle = async ({ slug }: favoriteParam) => {
+  return await apiClient({
+    method: 'post',
+    url: `/articles/${slug}/favorite`,
+  });
+};
+
+export const unfavoriteArticle = async ({ slug }: favoriteParam) => {
+  return await apiClient({
+    method: 'delete',
+    url: `/articles/${slug}/favorite`,
   });
 };

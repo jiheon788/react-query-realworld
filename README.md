@@ -48,7 +48,7 @@ The example application is a social blogging site (i.e. a Medium.com clone) call
 - [x] CRUD Articles
 - [x] CR-D Comments on articles (no updating required)
 - [x] GET and display paginated lists of articles
-- [ ] Favorite articles
+- [x] Favorite articles
 - [ ] Follow other users
 
 **The general page breakdown looks like this:**
