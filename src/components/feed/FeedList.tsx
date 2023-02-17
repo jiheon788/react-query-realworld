@@ -19,7 +19,7 @@ const FeedList = ({ query, toUrl, page, setPage }: IFeedListProps) => {
       {data.articles.length !== 0 ? (
         <>
           {data.articles.map((article: any) => (
-            <Feed key={article.title} article={article} />
+            <Feed key={article.slug} article={article} />
           ))}
         </>
       ) : (

@@ -1,3 +1,7 @@
+import { UserContext } from '@/contexts/UserContextProvider';
+import { useContext } from 'react';
+import FollowButton from './profile/FollowButton';
+
 interface IProfileProps {
   profile: {
     image: string;
@@ -8,6 +12,7 @@ interface IProfileProps {
 }
 
 const Profile = ({ profile }: IProfileProps) => {
+  const { isLogin } = useContext(UserContext);
   return (
     <div className="user-info">
       <div className="container">
@@ -16,10 +21,7 @@ const Profile = ({ profile }: IProfileProps) => {
             <img alt="profile" src={profile.image} className="user-img" />
             <h4>{profile.username}</h4>
             <p>{profile.bio}</p>
-            <button className={`btn btn-sm btn-outline-${profile.following ? 'primary' : 'secondary'} action-btn`}>
-              <i className="ion-plus-round"></i>
-              &nbsp; Follow {profile.username}
-            </button>
+            {isLogin ? <FollowButton profileName={profile.username} isFollow={profile.following} /> : <></>}
           </div>
         </div>
       </div>

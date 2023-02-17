@@ -10,14 +10,14 @@ export const getProfile = async ({ username }: profileParam) => {
 
 export const followUser = async ({ username }: profileParam) => {
   return await apiClient({
-    method: 'get',
+    method: 'post',
     url: `/profiles/${username}/follow`,
   });
 };
 
 export const unfollowUser = async ({ username }: profileParam) => {
   return await apiClient({
-    method: 'get',
+    method: 'delete',
     url: `/profiles/${username}/follow`,
   });
 };

@@ -34,7 +34,6 @@ const Feed = ({ article }: IFeedProps) => {
           },
         },
       );
-      return;
     }
 
     if (!article.favorited) {
