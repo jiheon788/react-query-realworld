@@ -1,4 +1,4 @@
-import { useCreateCommentMutation } from '@/queries/articles.query';
+import { useCreateCommentMutation, useDeleteCommentMutation } from '@/queries/articles.query';
 import { useGetUserQuery } from '@/queries/user.query';
 import useInputs from '@/lib/hooks/useInputs';
 import queryClient from '@/lib/queryClient';
@@ -11,12 +11,10 @@ interface ICommentProps {
 }
 
 const Comment = ({ comments, slug }: ICommentProps) => {
-  console.log(comments);
   const { data } = useGetUserQuery();
-
   const [newComment, onChangeNewComment, setNewComment] = useInputs({ body: '' });
-
   const createCommentMutation = useCreateCommentMutation();
+  const deleteCommentMutation = useDeleteCommentMutation();
 
   const onPostComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +24,17 @@ const Comment = ({ comments, slug }: ICommentProps) => {
       {
         onSuccess: (_) => {
           setNewComment({ body: '', slug });
+          queryClient.invalidateQueries({ queryKey: [QUERY_COMMENTS_KEY] });
+        },
+      },
+    );
+  };
+
+  const onDelete = (slug: string, id: number) => {
+    deleteCommentMutation.mutate(
+      { slug, id },
+      {
+        onSuccess: (_) => {
           queryClient.invalidateQueries({ queryKey: [QUERY_COMMENTS_KEY] });
         },
       },
@@ -67,10 +76,14 @@ const Comment = ({ comments, slug }: ICommentProps) => {
               {comment.author.username}
             </a>
             <span className="date-posted">{convertToDate(comment.updatedAt)}</span>
-            <span className="mod-options">
-              <i className="ion-edit"></i>
-              <i className="ion-trash-a"></i>
-            </span>
+            {data.username === comment.author.username ? (
+              <span className="mod-options">
+                {/* <i className="ion-edit"></i> */}
+                <i role="presentation" className="ion-trash-a" onClick={() => onDelete(comment.slug, comment.id)}></i>
+              </span>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ))}

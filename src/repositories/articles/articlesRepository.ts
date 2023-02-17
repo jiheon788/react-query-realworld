@@ -6,7 +6,8 @@ import {
   updateArticleParam,
   deleteArticleParam,
   getCommentsParam,
-  createCommentsParam,
+  createCommentParam,
+  deleteCommentParam,
 } from './articlesRepository.param';
 
 export const getArticles = async ({ query }: getArticlesParam) => {
@@ -67,7 +68,7 @@ export const getComments = async ({ slug }: getCommentsParam) => {
   });
 };
 
-export const createComments = async ({ slug, body }: createCommentsParam) => {
+export const createComment = async ({ slug, body }: createCommentParam) => {
   return await apiClient({
     method: 'post',
     url: `/articles/${slug}/comments`,
@@ -76,5 +77,12 @@ export const createComments = async ({ slug, body }: createCommentsParam) => {
         body,
       },
     },
+  });
+};
+
+export const deleteComment = async ({ slug, id }: deleteCommentParam) => {
+  return await apiClient({
+    method: 'delete',
+    url: `/articles/${slug}/comments/${id}`,
   });
 };

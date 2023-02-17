@@ -6,7 +6,8 @@ import {
   updateArticle,
   deleteArticle,
   getComments,
-  createComments,
+  createComment,
+  deleteComment,
 } from '@/repositories/articles/articlesRepository';
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 
@@ -41,4 +42,6 @@ export const useUpdateArticleMutation = () => useMutation(updateArticle);
 
 export const useDeleteArticleMutation = () => useMutation(deleteArticle);
 
-export const useCreateCommentMutation = () => useMutation(createComments);
+export const useCreateCommentMutation = () => useMutation(createComment);
+
+export const useDeleteCommentMutation = () => useMutation(deleteComment);

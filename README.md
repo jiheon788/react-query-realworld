@@ -46,7 +46,7 @@ The example application is a social blogging site (i.e. a Medium.com clone) call
 - [x] Authenticate users via JWT (login/signup pages + logout button on settings page)
 - [x] CRU- users (sign up & settings page - no deleting required)
 - [x] CRUD Articles
-- [ ] CR-D Comments on articles (no updating required)
+- [x] CR-D Comments on articles (no updating required)
 - [x] GET and display paginated lists of articles
 - [ ] Favorite articles
 - [ ] Follow other users

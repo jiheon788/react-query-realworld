@@ -29,7 +29,12 @@ export interface getCommentsParam {
   slug: string;
 }
 
-export interface createCommentsParam {
+export interface createCommentParam {
   slug: string;
   body: string;
+}
+
+export interface deleteCommentParam {
+  slug: string;
+  id: number;
 }
