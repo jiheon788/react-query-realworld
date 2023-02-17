@@ -1,6 +1,6 @@
 import { QUERY_USER_KEY } from '@/constants/query.constant';
 import useInputs from '@/lib/hooks/useInputs';
-import queryClient from '@/lib/queryClient';
+import queryClient from '@/queries/queryClient';
 import { usePutUserMutation } from '@/queries/user.query';
 import { useNavigate } from 'react-router-dom';
 

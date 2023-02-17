@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '@/contexts/UserContextProvider';
 import routerMeta from '@/lib/routerMeta';
-import queryClient from '@/lib/queryClient';
+import queryClient from '@/queries/queryClient';
 import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
 
 interface IFeedProps {

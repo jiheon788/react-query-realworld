@@ -1,4 +1,4 @@
-import apiClient from '@/lib/apiClient';
+import apiClient from '@/repositories/apiClient';
 import { profileParam } from './profileRepository.param';
 
 export const getProfile = async ({ username }: profileParam) => {

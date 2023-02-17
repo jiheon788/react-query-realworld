@@ -1,4 +1,4 @@
-import apiClient from '@/lib/apiClient';
+import apiClient from '@/repositories/apiClient';
 import { postLoginParam, postRegisterParam, putUserParam } from './usersRepository.param';
 
 export const postLogin = async ({ email, password }: postLoginParam) => {

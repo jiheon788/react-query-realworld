@@ -1,4 +1,4 @@
-import apiClient from '@/lib/apiClient';
+import apiClient from '@/repositories/apiClient';
 
 export const getTags = async () => {
   return await apiClient({

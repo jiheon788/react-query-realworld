@@ -1,7 +1,7 @@
 import { useCreateCommentMutation, useDeleteCommentMutation } from '@/queries/articles.query';
 import { useGetUserQuery } from '@/queries/user.query';
 import useInputs from '@/lib/hooks/useInputs';
-import queryClient from '@/lib/queryClient';
+import queryClient from '@/queries/queryClient';
 import { QUERY_COMMENTS_KEY } from '@/constants/query.constant';
 import { convertToDate } from '@/lib/utils';
 

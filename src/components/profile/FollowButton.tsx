@@ -1,5 +1,5 @@
 import { QUERY_PROFILE_KEY } from '@/constants/query.constant';
-import queryClient from '@/lib/queryClient';
+import queryClient from '@/queries/queryClient';
 import routerMeta from '@/lib/routerMeta';
 import { useFollowUserMutation, useUnFollowUserMutation } from '@/queries/profiles.query';
 import { useGetUserQuery } from '@/queries/user.query';

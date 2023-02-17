@@ -2,9 +2,7 @@
 
 [![RealWorld Frontend](https://img.shields.io/badge/realworld-frontend-%23783578.svg)](http://realworld.io)
 
-> ### React + React Query codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) [spec](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates) and [API](https://api.realworld.io/api-docs/).
-
-
+> ### React + React Query codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 ### [Demo](https://react-query-realworld.netlify.app)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
@@ -14,7 +12,26 @@ We've gone to great lengths to adhere to the [TanStack Query](https://tanstack.c
 
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
-## How it works
+# How it works
+
+```bash
+src
+│  App.tsx
+│  index.tsx
+│  react-app-env.d.ts
+│  Router.tsx # dynamic router assignment
+├─components # components
+├─constants # constants
+├─contexts # context API
+├─lib
+│  │  routerMeta.ts # meta data of router
+│  │  token.ts # localstorage class
+│  │  utils.ts # utility func
+│  └─hooks # custom hooks
+├─pages # page components
+├─queries # react query func
+└─repositories # api service
+```
 
 ### Making requests to the backend API
 
@@ -22,7 +39,11 @@ For convenience, we have a live API server running at https://conduit.production
 
 The source code for the backend server (available for Node, Rails and Django) can be found in the [main RealWorld repo](https://github.com/gothinkster/realworld).
 
-## Getting Started
+### Using Marked Up Templates
+
+You can check the marked up [frontend spec here](https://realworld-docs.netlify.app/docs/specs/frontend-specs/templates).
+
+# Getting Started
 
 #### Install
 ```
@@ -37,19 +58,19 @@ npm run build
 npm start
 ```
 
-## Functionality overview
+# Functionality overview
 
 The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at [https://react-query-realworld.netlify.app](https://react-query-realworld.netlify.app)
 
 **General functionality:**
 
-- [x] Authenticate users via JWT (login/signup pages + logout button on settings page)
-- [x] CRU- users (sign up & settings page - no deleting required)
-- [x] CRUD Articles
-- [x] CR-D Comments on articles (no updating required)
-- [x] GET and display paginated lists of articles
-- [x] Favorite articles
-- [ ] Follow other users
+- Authenticate users via JWT (login/signup pages + logout button on settings page)
+- CRU- users (sign up & settings page - no deleting required)
+- CRUD Articles
+- CR-D Comments on articles (no updating required)
+- GET and display paginated lists of articles
+- Favorite articles
+- Follow other users
 
 **The general page breakdown looks like this:**
 

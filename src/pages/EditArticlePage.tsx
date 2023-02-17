@@ -1,5 +1,5 @@
 import useInputs from '@/lib/hooks/useInputs';
-import queryClient from '@/lib/queryClient';
+import queryClient from '@/queries/queryClient';
 import { useUpdateArticleMutation } from '@/queries/articles.query';
 import { QUERY_ARTICLE_KEY } from '@/constants/query.constant';
 import { useLocation, useNavigate } from 'react-router-dom';
