@@ -1,7 +1,7 @@
 import { useGetProfileQuery } from '@/queries/profiles.query';
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { UNITS_PER_PAGE } from '@/constants/config.constants';
+import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import Profile from '@/components/Profile';
 import FeedList from '@/components/feed/FeedList';
 
@@ -9,15 +9,15 @@ const ProfilePage = () => {
   const { state } = useLocation();
   const [page, setPage] = useState(1);
   const [isFavorited, setIsFavorited] = useState(false);
-  const [query, setQuery] = useState(`?limit=${UNITS_PER_PAGE}&offset=0&author=${state}`);
+  const [query, setQuery] = useState(`?limit=${UNIT_PER_PAGE}&offset=0&author=${state}`);
 
   const { data } = useGetProfileQuery(state);
 
   useEffect(() => {
     if (isFavorited) {
-      setQuery(`?limit=${UNITS_PER_PAGE}&offset=0&favorited=${state}`);
+      setQuery(`?limit=${UNIT_PER_PAGE}&offset=0&favorited=${state}`);
     } else {
-      setQuery(`?limit=${UNITS_PER_PAGE}&offset=0&author=${state}`);
+      setQuery(`?limit=${UNIT_PER_PAGE}&offset=0&author=${state}`);
     }
   }, [page, isFavorited]);
 

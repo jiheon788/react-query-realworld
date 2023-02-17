@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { scrollToTop } from '@/lib/utils';
-import { UNITS_PER_PAGE } from '@/constants/config.constants';
+import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import FeedList from '@/components/feed/FeedList';
 
 const HomePage = () => {
@@ -12,7 +12,7 @@ const HomePage = () => {
   const [isGlobal, setIsGlobal] = useState(true);
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
-  const [query, setQuery] = useState(`?limit=${UNITS_PER_PAGE}&offset=0`);
+  const [query, setQuery] = useState(`?limit=${UNIT_PER_PAGE}&offset=0`);
 
   useEffect(() => {
     getTags().then((res) => {
@@ -23,10 +23,10 @@ const HomePage = () => {
   useEffect(() => {
     if (isGlobal) {
       setQuery(
-        `?limit=${UNITS_PER_PAGE}&offset=${UNITS_PER_PAGE * (page - 1)}${selectedTag ? `&tag=${selectedTag}` : ''}`,
+        `?limit=${UNIT_PER_PAGE}&offset=${UNIT_PER_PAGE * (page - 1)}${selectedTag ? `&tag=${selectedTag}` : ''}`,
       );
     } else {
-      setQuery(`/feed?limit=${UNITS_PER_PAGE}&offset=${UNITS_PER_PAGE * (page - 1)}`);
+      setQuery(`/feed?limit=${UNIT_PER_PAGE}&offset=${UNIT_PER_PAGE * (page - 1)}`);
     }
   }, [isGlobal, selectedTag, page]);
 

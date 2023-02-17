@@ -1,4 +1,4 @@
-import { UNITS_PER_PAGE } from '@/constants/config.constants';
+import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import { scrollToTop } from '@/lib/utils';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { NavLink } from 'react-router-dom';
@@ -27,8 +27,8 @@ const FeedList = ({ query, toUrl, page, setPage }: IFeedListProps) => {
       )}
       <nav>
         <ul className="pagination">
-          {data.articlesCount > UNITS_PER_PAGE ? (
-            Array.from({ length: Number((data.articlesCount / UNITS_PER_PAGE).toFixed()) }, (_, i) => i + 1).map(
+          {data.articlesCount > UNIT_PER_PAGE ? (
+            Array.from({ length: Number((data.articlesCount / UNIT_PER_PAGE).toFixed()) }, (_, i) => i + 1).map(
               (index) => (
                 <li
                   key={index}
