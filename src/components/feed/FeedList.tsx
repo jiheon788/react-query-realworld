@@ -1,4 +1,6 @@
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
+import generateOneToNArray from '@/lib/utils/generateOneToNArray';
+import getIntegerQuotient from '@/lib/utils/getIntegerQuotient';
 import scrollToTop from '@/lib/utils/scrollToTop';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { NavLink } from 'react-router-dom';
@@ -28,23 +30,21 @@ const FeedList = ({ query, toUrl, page, setPage }: IFeedListProps) => {
       <nav>
         <ul className="pagination">
           {data.articlesCount > UNIT_PER_PAGE ? (
-            Array.from({ length: Number((data.articlesCount / UNIT_PER_PAGE).toFixed()) }, (_, i) => i + 1).map(
-              (index) => (
-                <li
-                  key={index}
-                  role="presentation"
-                  className={`page-item ${page === index ? 'active' : ''}`}
-                  onClick={() => {
-                    setPage(index);
-                    scrollToTop();
-                  }}
-                >
-                  <NavLink to={toUrl} className="page-link">
-                    {index}
-                  </NavLink>
-                </li>
-              ),
-            )
+            generateOneToNArray(getIntegerQuotient(data.articlesCount, UNIT_PER_PAGE)).map((value) => (
+              <li
+                key={value}
+                role="presentation"
+                className={`page-item ${page === value ? 'active' : ''}`}
+                onClick={() => {
+                  setPage(value);
+                  scrollToTop();
+                }}
+              >
+                <NavLink to={toUrl} className="page-link">
+                  {value}
+                </NavLink>
+              </li>
+            ))
           ) : (
             <></>
           )}
