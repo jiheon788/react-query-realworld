@@ -16,21 +16,22 @@ For more information on how to this works with other frontends/backends, head ov
 
 ```bash
 src
-│  App.tsx
-│  index.tsx
-│  react-app-env.d.ts
-│  Router.tsx # dynamic router assignment
-├─components # components
-├─constants # constants
-├─contexts # context API
-├─lib
-│  │  routerMeta.ts # meta data of router
-│  │  token.ts # localstorage class
-│  │  utils.ts # utility func
-│  └─hooks # custom hooks
-├─pages # page components
-├─queries # react query func
-└─repositories # api service
+├─ App.tsx
+├─ index.tsx
+├─ react-app-env.d.ts
+├─ Router.tsx # dynamic router assignment
+├─ components # components
+├─ constants # constants
+├─ contexts # context API
+├─ lib
+│  ├─ routerMeta.ts # meta data of router
+│  ├─ token.ts # localstorage class
+│  ├─ utils # utility funcs
+│  └─ hooks # custom hooks
+├─ pages # page components
+├─ queries # react query func
+└─ repositories # api service
+    └─ apiClient.ts # Axios Instance & Interceptor
 ```
 
 ### Making requests to the backend API

@@ -3,7 +3,7 @@ import { useGetUserQuery } from '@/queries/user.query';
 import useInputs from '@/lib/hooks/useInputs';
 import queryClient from '@/queries/queryClient';
 import { QUERY_COMMENTS_KEY } from '@/constants/query.constant';
-import { convertToDate } from '@/lib/utils';
+import convertToDate from '@/lib/utils/convertToDate';
 
 interface ICommentProps {
   comments: any[];

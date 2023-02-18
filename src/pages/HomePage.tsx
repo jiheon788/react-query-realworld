@@ -1,9 +1,6 @@
-import Feed from '@/components/feed/Feed';
 import { getTags } from '@/repositories/tags/tagsRepository';
 import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { useGetArticlesQuery } from '@/queries/articles.query';
-import { scrollToTop } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import FeedList from '@/components/feed/FeedList';
 

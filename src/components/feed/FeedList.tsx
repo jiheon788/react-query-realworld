@@ -1,5 +1,5 @@
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
-import { scrollToTop } from '@/lib/utils';
+import scrollToTop from '@/lib/utils/scrollToTop';
 import { useGetArticlesQuery } from '@/queries/articles.query';
 import { NavLink } from 'react-router-dom';
 import Feed from './Feed';

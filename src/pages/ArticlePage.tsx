@@ -1,4 +1,3 @@
-import { convertToDate } from '@/lib/utils';
 import { useGetArticleQueries } from '@/queries/articles.query';
 import { Link, useLocation } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -8,6 +7,7 @@ import { useContext } from 'react';
 import { UserContext } from '@/contexts/UserContextProvider';
 import Comment from '@/components/article/Comment';
 import routerMeta from '@/lib/routerMeta';
+import convertToDate from '@/lib/utils/convertToDate';
 
 const ArticlePage = () => {
   const { state } = useLocation();
