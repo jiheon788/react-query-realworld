@@ -29,7 +29,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "test": "jest",
     "eject": "craco eject"
   },
   "eslintConfig": {
@@ -52,6 +52,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-typescript": "^7.18.6",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.32.0",
@@ -63,6 +66,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^27.5.1",
     "prettier": "^2.8.3",
     "tsconfig-paths-webpack-plugin": "^4.0.0"
   }
