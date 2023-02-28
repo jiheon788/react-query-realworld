@@ -63,7 +63,7 @@ const SignInPage = () => {
                 />
               </fieldset>
               <button type="submit" className="btn btn-lg btn-primary pull-xs-right">
-                Sign up
+                Sign in
               </button>
             </form>
           </div>

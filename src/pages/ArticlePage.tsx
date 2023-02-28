@@ -35,7 +35,7 @@ const ArticlePage = () => {
               </Link>
               <span className="date">{convertToDate(article.data.updatedAt)}</span>
             </div>
-            <ButtonSelector articleInfo={article.data}></ButtonSelector>
+            {isLogin ? <ButtonSelector articleInfo={article.data} /> : <></>}
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ const ArticlePage = () => {
               </Link>
               <span className="date">{convertToDate(article.data.updatedAt)}</span>
             </div>
-            {isLogin ? <ButtonSelector articleInfo={article.data}></ButtonSelector> : <></>}
+            {isLogin ? <ButtonSelector articleInfo={article.data} /> : <></>}
           </div>
         </div>
         <div className="row">
