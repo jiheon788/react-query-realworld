@@ -1,4 +1,4 @@
-const Loading = () => {
+const LoadingFallback = () => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h1 className="logo-font">Loading...</h1>
@@ -6,4 +6,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default LoadingFallback;
