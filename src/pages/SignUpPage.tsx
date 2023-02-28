@@ -3,9 +3,15 @@ import useInputs from '@/lib/hooks/useInputs';
 import routerMeta from '@/lib/routerMeta';
 import token from '@/lib/token';
 import { postRegister } from '@/repositories/users/usersRepository';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
+  const [error, setError] = useState({
+    email: '',
+    username: '',
+    password: '',
+  });
   const [signUpdata, onChangeSignUpData] = useInputs({ username: '', email: '', password: '' });
   const navigate = useNavigate();
 
@@ -18,7 +24,11 @@ const SignUpPage = () => {
         window.location.reload();
       })
       .catch((err) => {
-        alert(JSON.stringify(err.response.data.errors || 'error'));
+        setError({
+          email: err.response.data.errors.email,
+          password: err.response.data.errors.password,
+          username: err.response.data.errors.username,
+        });
       });
   };
 
@@ -32,9 +42,11 @@ const SignUpPage = () => {
               <Link to={routerMeta.SignInPage.path}>Have an account?</Link>
             </p>
 
-            {/* <ul className="error-messages">
-                <li>That email is already taken</li>
-              </ul> */}
+            <ul className="error-messages">
+              {error.email && <li>email {error.email}</li>}
+              {error.password && <li>password {error.password}</li>}
+              {error.username && <li>username {error.username}</li>}
+            </ul>
 
             <form onSubmit={onRegister}>
               <fieldset className="form-group">

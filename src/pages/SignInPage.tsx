@@ -4,10 +4,16 @@ import routerMeta from '@/lib/routerMeta';
 import token from '@/lib/token';
 import { postLogin } from '@/repositories/users/usersRepository';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '@/contexts/UserContextProvider';
 
 const SignInPage = () => {
+  const [error, setError] = useState({
+    email: '',
+    password: '',
+    emailOrPassword: '',
+  });
+
   const [signIndata, onChangeSignInData] = useInputs({ email: '', password: '' });
   const { setIsLogin } = useContext(UserContext);
 
@@ -22,7 +28,11 @@ const SignInPage = () => {
         navigate('/');
       })
       .catch((err) => {
-        alert(err.response.data.errors.email || err.response.data.errors['email or password'] || 'error');
+        setError({
+          email: err.response.data.errors.email,
+          password: err.response.data.errors.password,
+          emailOrPassword: err.response.data.errors['email or password'],
+        });
       });
   };
 
@@ -36,9 +46,11 @@ const SignInPage = () => {
               <Link to={routerMeta.SignUpPage.path}>Not registered?</Link>
             </p>
 
-            {/* <ul className="error-messages">
-            <li>That email is already taken</li>
-          </ul> */}
+            <ul className="error-messages">
+              {error.email && <li>email {error.email}</li>}
+              {error.password && <li>password {error.password}</li>}
+              {error.emailOrPassword && <li>email or password {error.emailOrPassword}</li>}
+            </ul>
 
             <form onSubmit={onLogin}>
               <fieldset className="form-group">
