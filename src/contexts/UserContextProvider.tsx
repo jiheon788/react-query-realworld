@@ -6,7 +6,12 @@ interface IUserContextProviderProps {
   children: JSX.Element[];
 }
 
-export const UserContext = createContext<any>(false);
+interface IDefaultUserContext {
+  isLogin: boolean;
+  setIsLogin: any;
+}
+
+export const UserContext = createContext<IDefaultUserContext>({ isLogin: false, setIsLogin: null });
 
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   const [isLogin, setIsLogin] = useState(!!token.getToken(ACCESS_TOKEN_KEY));

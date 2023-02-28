@@ -11,7 +11,7 @@ const SettingPage = () => {
   const { setIsLogin } = useContext(UserContext);
   const onLogout = () => {
     token.removeToken(ACCESS_TOKEN_KEY);
-    setIsLogin(null);
+    setIsLogin(false);
     navigate('/');
   };
 

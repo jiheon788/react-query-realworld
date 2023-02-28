@@ -3,7 +3,8 @@ import useInputs from '@/lib/hooks/useInputs';
 import routerMeta from '@/lib/routerMeta';
 import token from '@/lib/token';
 import { postRegister } from '@/repositories/users/usersRepository';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { UserContext } from '@/contexts/UserContextProvider';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
@@ -13,6 +14,8 @@ const SignUpPage = () => {
     password: '',
   });
   const [signUpdata, onChangeSignUpData] = useInputs({ username: '', email: '', password: '' });
+  const { setIsLogin } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const onRegister = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,8 +23,8 @@ const SignUpPage = () => {
     postRegister(signUpdata)
       .then((res) => {
         token.setToken(ACCESS_TOKEN_KEY, res.data.user.token);
-        navigate('/');
-        window.location.reload();
+        setIsLogin(!!token.getToken(ACCESS_TOKEN_KEY));
+        navigate('/', { replace: true });
       })
       .catch((err) => {
         setError({
