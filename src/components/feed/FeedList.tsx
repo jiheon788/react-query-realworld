@@ -1,25 +1,24 @@
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import generateOneToNArray from '@/lib/utils/generateOneToNArray';
 import scrollToTop from '@/lib/utils/scrollToTop';
-import { useGetArticlesQuery } from '@/queries/articles.query';
 import { NavLink } from 'react-router-dom';
 import Feed from './Feed';
 
 interface IFeedListProps {
-  query: string;
+  articlesInfo: any;
   toUrl: string;
   page: number;
   setPage: (page: number) => void;
 }
 
-const FeedList = ({ query, toUrl, page, setPage }: IFeedListProps) => {
-  const { data } = useGetArticlesQuery(query);
+const FeedList = ({ articlesInfo, toUrl, page, setPage }: IFeedListProps) => {
+  const { articles, articlesCount } = articlesInfo;
 
   return (
     <>
-      {data.articles.length !== 0 ? (
+      {articles.length !== 0 ? (
         <>
-          {data.articles.map((article: any) => (
+          {articles.map((article: any) => (
             <Feed key={article.slug} article={article} />
           ))}
         </>
@@ -28,8 +27,8 @@ const FeedList = ({ query, toUrl, page, setPage }: IFeedListProps) => {
       )}
       <nav>
         <ul className="pagination">
-          {data.articlesCount > UNIT_PER_PAGE ? (
-            generateOneToNArray(Math.floor(data.articlesCount / UNIT_PER_PAGE)).map((value) => (
+          {articlesCount > UNIT_PER_PAGE ? (
+            generateOneToNArray(Math.floor(articlesCount / UNIT_PER_PAGE)).map((value) => (
               <li
                 key={value}
                 role="presentation"

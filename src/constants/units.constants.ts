@@ -1,1 +1,1 @@
-export const UNIT_PER_PAGE = 20;
+export const UNIT_PER_PAGE = 10;

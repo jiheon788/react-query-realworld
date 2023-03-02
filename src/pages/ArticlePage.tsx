@@ -11,31 +11,31 @@ import convertToDate from '@/lib/utils/convertToDate';
 
 const ArticlePage = () => {
   const { state } = useLocation();
-  const [article, comments] = useGetArticleQueries(state);
+  const [articleInfo, commentsInfo] = useGetArticleQueries(state);
   const { isLogin } = useContext(UserContext);
 
   return (
     <div className="article-page">
       <div className="banner">
         <div className="container">
-          <h1>{article.data.title}</h1>
+          <h1>{articleInfo.data.title}</h1>
 
           <div className="article-meta">
-            <Link to={`/profile/${article.data.author.username}`} state={article.data.author.username}>
-              <img src={article.data.author.image} alt="comment-author" />
+            <Link to={`/profile/${articleInfo.data.author.username}`} state={articleInfo.data.author.username}>
+              <img src={articleInfo.data.author.image} alt="comment-author" />
             </Link>
 
             <div className="info">
               <Link
-                to={`/profile/${article.data.author.username}`}
-                state={article.data.author.username}
+                to={`/profile/${articleInfo.data.author.username}`}
+                state={articleInfo.data.author.username}
                 className="author"
               >
-                {article.data.author.username}
+                {articleInfo.data.author.username}
               </Link>
-              <span className="date">{convertToDate(article.data.updatedAt)}</span>
+              <span className="date">{convertToDate(articleInfo.data.updatedAt)}</span>
             </div>
-            {isLogin ? <ButtonSelector articleInfo={article.data} /> : <></>}
+            {isLogin ? <ButtonSelector articleInfo={articleInfo.data} /> : <></>}
           </div>
         </div>
       </div>
@@ -43,11 +43,11 @@ const ArticlePage = () => {
       <div className="container page">
         <div className="row article-content">
           <div className="col-md-12">
-            <ReactMarkdown children={article.data.body} remarkPlugins={[remarkGfm]}></ReactMarkdown>
+            <ReactMarkdown children={articleInfo.data.body} remarkPlugins={[remarkGfm]}></ReactMarkdown>
           </div>
         </div>
         <div>
-          {article.data.tagList.map((tag: string) => (
+          {articleInfo.data.tagList.map((tag: string) => (
             <li key={tag} className="tag-default tag-pill tag-outline">
               {tag}
             </li>
@@ -57,26 +57,26 @@ const ArticlePage = () => {
 
         <div className="article-actions">
           <div className="article-meta">
-            <Link to={`/profile/${article.data.author.username}`} state={article.data.author.username}>
-              <img src={article.data.author.image} alt="profile" />
+            <Link to={`/profile/${articleInfo.data.author.username}`} state={articleInfo.data.author.username}>
+              <img src={articleInfo.data.author.image} alt="profile" />
             </Link>
             <div className="info">
               <Link
-                to={`/profile/${article.data.author.username}`}
-                state={article.data.author.username}
+                to={`/profile/${articleInfo.data.author.username}`}
+                state={articleInfo.data.author.username}
                 className="author"
               >
-                {article.data.author.username}
+                {articleInfo.data.author.username}
               </Link>
-              <span className="date">{convertToDate(article.data.updatedAt)}</span>
+              <span className="date">{convertToDate(articleInfo.data.updatedAt)}</span>
             </div>
-            {isLogin ? <ButtonSelector articleInfo={article.data} /> : <></>}
+            {isLogin ? <ButtonSelector articleInfo={articleInfo.data} /> : <></>}
           </div>
         </div>
         <div className="row">
           <div className="col-xs-12 col-md-8 offset-md-2">
             {isLogin ? (
-              <Comment comments={comments.data} slug={article.data.slug} />
+              <Comment comments={commentsInfo.data} slug={articleInfo.data.slug} />
             ) : (
               <p>
                 <Link to={routerMeta.SignInPage.path}>Sign in</Link>

@@ -1,4 +1,4 @@
-import { useGetProfileQuery } from '@/queries/profiles.query';
+import { useGetProfileQueries } from '@/queries/profiles.query';
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const [isFavorited, setIsFavorited] = useState(false);
   const [query, setQuery] = useState(`?limit=${UNIT_PER_PAGE}&offset=0&author=${state}`);
 
-  const { data } = useGetProfileQuery(state);
+  const [profileInfo, articlesInfo] = useGetProfileQueries(state, query);
 
   useEffect(() => {
     if (isFavorited) {
@@ -19,11 +19,11 @@ const ProfilePage = () => {
     } else {
       setQuery(`?limit=${UNIT_PER_PAGE}&offset=0&author=${state}`);
     }
-  }, [page, isFavorited]);
+  }, [state, page, isFavorited]);
 
   return (
     <div className="profile-page">
-      <Profile profile={data} />
+      <Profile profile={profileInfo.data} />
 
       <div className="container">
         <div className="row">
@@ -54,9 +54,30 @@ const ProfilePage = () => {
                 </li>
               </ul>
             </div>
+
             <Routes>
-              <Route path="/" element={<FeedList query={query} toUrl={'/'} page={page} setPage={setPage} />} />
-              <Route path="/favorites" element={<FeedList query={query} toUrl={'/'} page={page} setPage={setPage} />} />
+              <Route
+                path="/"
+                element={
+                  <FeedList
+                    articlesInfo={articlesInfo.data}
+                    toUrl={`/profile/${state}`}
+                    page={page}
+                    setPage={setPage}
+                  />
+                }
+              />
+              <Route
+                path="/favorites"
+                element={
+                  <FeedList
+                    articlesInfo={articlesInfo.data}
+                    toUrl={`/profile/${state}`}
+                    page={page}
+                    setPage={setPage}
+                  />
+                }
+              />
             </Routes>
           </div>
         </div>

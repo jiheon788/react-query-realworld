@@ -1,21 +1,15 @@
-import { getTags } from '@/repositories/tags/tagsRepository';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import FeedList from '@/components/feed/FeedList';
+import { useGetArticlesQueries } from '@/queries/articles.query';
 
 const HomePage = () => {
   const [page, setPage] = useState(1);
   const [isGlobal, setIsGlobal] = useState(true);
-  const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState('');
   const [query, setQuery] = useState(`?limit=${UNIT_PER_PAGE}&offset=0`);
-
-  useEffect(() => {
-    getTags().then((res) => {
-      setTags(res.data.tags);
-    });
-  }, []);
+  const [articlesInfo, tagsInfo] = useGetArticlesQueries(query);
 
   useEffect(() => {
     if (isGlobal) {
@@ -53,7 +47,7 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            <FeedList query={query} toUrl={'/'} page={page} setPage={setPage} />
+            <FeedList articlesInfo={articlesInfo.data} toUrl={'/'} page={page} setPage={setPage} />
           </div>
 
           <div className="col-md-3">
@@ -61,7 +55,7 @@ const HomePage = () => {
               <p>Popular Tags</p>
 
               <div className="tag-list">
-                {tags.map((tag: string) => (
+                {tagsInfo.data.map((tag: string) => (
                   <Link
                     to="/"
                     key={tag}

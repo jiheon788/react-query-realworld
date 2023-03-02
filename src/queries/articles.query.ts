@@ -1,4 +1,4 @@
-import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY, QUERY_COMMENTS_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY, QUERY_COMMENTS_KEY, QUERY_TAG_KEY } from '@/constants/query.constant';
 import {
   getArticle,
   getArticles,
@@ -11,13 +11,21 @@ import {
   favoriteArticle,
   unfavoriteArticle,
 } from '@/repositories/articles/articlesRepository';
-import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
+import { getTags } from '@/repositories/tags/tagsRepository';
+import { useMutation, useQueries } from '@tanstack/react-query';
 
-export const useGetArticlesQuery = (query: string) => {
-  return useQuery({
-    queryKey: [QUERY_ARTICLES_KEY, query],
-    queryFn: () => getArticles({ query }).then((res) => res.data),
-    keepPreviousData: true,
+export const useGetArticlesQueries = (query: string) => {
+  return useQueries({
+    queries: [
+      {
+        queryKey: [QUERY_ARTICLES_KEY, query],
+        queryFn: () => getArticles({ query }).then((res) => res.data),
+      },
+      {
+        queryKey: [QUERY_TAG_KEY],
+        queryFn: () => getTags().then((res) => res.data.tags),
+      },
+    ],
   });
 };
 
