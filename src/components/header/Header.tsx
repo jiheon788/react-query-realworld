@@ -18,13 +18,11 @@ const Header = () => {
           {Object.keys(routerMeta).map((componentKey: string) => {
             const menu: IRouterMeta = routerMeta[componentKey];
 
-            if (menu.isShow && menu.isCommon) {
-              return <NavItem key={menu.path} menu={menu} />;
-            }
-            if (menu.isShow && menu.isAuth && isLogin) {
-              return <NavItem key={menu.path} menu={menu} />;
-            }
-            if (menu.isShow && !menu.isAuth && !isLogin) {
+            if (
+              (menu.isShow && menu.isCommon) ||
+              (menu.isShow && menu.isAuth && isLogin) ||
+              (menu.isShow && !menu.isAuth && !isLogin)
+            ) {
               return <NavItem key={menu.path} menu={menu} />;
             }
           })}
