@@ -1,9 +1,9 @@
-import routerMeta from '@/lib/routerMeta';
-import { Link, NavLink } from 'react-router-dom';
-import HeaderWithAccess from './HeaderWithAccess';
-import HeaderWithoutAccess from './HeaderWithoutAccess';
+import routerMeta, { IRouterMeta } from '@/lib/routerMeta';
+import { Link } from 'react-router-dom';
+import ProfileItem from './ProfileItem';
 import { useContext } from 'react';
 import { UserContext } from '@/contexts/UserContextProvider';
+import NavItem from './NavItem';
 
 const Header = () => {
   const { isLogin } = useContext(UserContext);
@@ -15,13 +15,21 @@ const Header = () => {
           conduit
         </Link>
         <ul className="nav navbar-nav pull-xs-right">
-          <li className="nav-item">
-            <NavLink to={routerMeta.HomePage.path} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-              {routerMeta.HomePage.name}
-            </NavLink>
-          </li>
+          {Object.keys(routerMeta).map((componentKey: string) => {
+            const menu: IRouterMeta = routerMeta[componentKey];
 
-          {isLogin ? <HeaderWithAccess /> : <HeaderWithoutAccess />}
+            if (menu.isShow && menu.isCommon) {
+              return <NavItem key={menu.path} menu={menu} />;
+            }
+            if (menu.isShow && menu.isAuth && isLogin) {
+              return <NavItem key={menu.path} menu={menu} />;
+            }
+            if (menu.isShow && !menu.isAuth && !isLogin) {
+              return <NavItem key={menu.path} menu={menu} />;
+            }
+          })}
+
+          {isLogin ? <ProfileItem /> : null}
         </ul>
       </div>
     </nav>
