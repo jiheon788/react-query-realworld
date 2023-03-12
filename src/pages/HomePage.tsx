@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import FeedList from '@/components/feed/FeedList';
 import { useGetArticlesQueries } from '@/queries/articles.query';
+import { UserContext } from '@/contexts/UserContextProvider';
 
 const HomePage = () => {
+  const { isLogin } = useContext(UserContext);
   const [page, setPage] = useState(1);
   const [isGlobal, setIsGlobal] = useState(true);
   const [selectedTag, setSelectedTag] = useState('');
@@ -35,11 +37,19 @@ const HomePage = () => {
           <div className="col-md-9">
             <div className="feed-toggle">
               <ul className="nav nav-pills outline-active">
-                <li className="nav-item">
-                  <Link className={`nav-link ${isGlobal ? '' : 'active'}`} to="/" onClick={() => setIsGlobal(false)}>
-                    Your Feed
-                  </Link>
-                </li>
+                {isLogin && (
+                  <li className="nav-item">
+                    <Link
+                      className={`nav-link ${isGlobal ? '' : 'active'}`}
+                      to="/"
+                      onClick={() => {
+                        setIsGlobal(false);
+                      }}
+                    >
+                      Your Feed
+                    </Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <Link className={`nav-link ${isGlobal ? 'active' : ''}`} to="/" onClick={() => setIsGlobal(true)}>
                     Global Feed
