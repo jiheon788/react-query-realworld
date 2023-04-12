@@ -4,9 +4,10 @@ import useInputs from '@/lib/hooks/useInputs';
 import queryClient from '@/queries/queryClient';
 import { QUERY_COMMENTS_KEY } from '@/constants/query.constant';
 import convertToDate from '@/lib/utils/convertToDate';
+import { IComment } from '@/interfaces/main';
 
 interface ICommentProps {
-  comments: any[];
+  comments: IComment[];
   slug: string;
 }
 
@@ -62,7 +63,7 @@ const Comment = ({ comments, slug }: ICommentProps) => {
         </div>
       </form>
 
-      {comments.map((comment: any, index: number) => (
+      {comments.map((comment, index) => (
         <div className="card" key={index}>
           <div className="card-block">
             <p className="card-text">{comment.body}</p>
@@ -79,7 +80,7 @@ const Comment = ({ comments, slug }: ICommentProps) => {
             {data.username === comment.author.username ? (
               <span className="mod-options">
                 {/* <i className="ion-edit"></i> */}
-                <i role="presentation" className="ion-trash-a" onClick={() => onDelete(comment.slug, comment.id)}></i>
+                <i role="presentation" className="ion-trash-a" onClick={() => onDelete(slug, comment.id)}></i>
               </span>
             ) : (
               <></>

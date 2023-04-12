@@ -7,7 +7,7 @@ export interface getArticlesParam {
 }
 
 export interface getArticleParam {
-  slug: any;
+  slug: string;
 }
 
 export interface createArticleParam {

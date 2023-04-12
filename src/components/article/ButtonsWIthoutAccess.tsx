@@ -2,9 +2,10 @@ import { useFavoriteArticleMutation, useUnfavoriteArticleMutation } from '@/quer
 import { useFollowUserMutation, useUnFollowUserMutation } from '@/queries/profiles.query';
 import queryClient from '@/queries/queryClient';
 import { QUERY_ARTICLE_KEY } from '@/constants/query.constant';
+import { IArticle } from '@/interfaces/main';
 
 interface IButtonsWIthoutAccessProps {
-  articleInfo: { [key: string]: any };
+  articleInfo: IArticle;
 }
 
 const ButtonsWIthoutAccess = ({ articleInfo }: IButtonsWIthoutAccessProps) => {

@@ -6,17 +6,19 @@ interface IUserContextProviderProps {
   children: JSX.Element[];
 }
 
-interface IDefaultUserContext {
-  isLogin: boolean;
-  setIsLogin: any;
-}
-
-export const UserContext = createContext<IDefaultUserContext>({ isLogin: false, setIsLogin: null });
-
-const UserContextProvider = ({ children }: IUserContextProviderProps) => {
+const useIsLogin = () => {
   const [isLogin, setIsLogin] = useState(!!token.getToken(ACCESS_TOKEN_KEY));
 
-  return <UserContext.Provider value={{ isLogin, setIsLogin }}>{children}</UserContext.Provider>;
+  return {
+    isLogin,
+    setIsLogin,
+  };
+};
+
+export const UserContext = createContext({} as ReturnType<typeof useIsLogin>);
+
+const UserContextProvider = ({ children }: IUserContextProviderProps) => {
+  return <UserContext.Provider value={useIsLogin()}>{children}</UserContext.Provider>;
 };
 
 export default UserContextProvider;

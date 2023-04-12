@@ -1,9 +1,10 @@
 import { useGetUserQuery } from '@/queries/user.query';
 import ButtonsWIthAccess from './ButtonsWIthAccess';
 import ButtonsWIthoutAccess from './ButtonsWIthoutAccess';
+import { IArticle } from '@/interfaces/main';
 
 interface IButtonSelectorProps {
-  articleInfo: { [key: string]: any };
+  articleInfo: IArticle;
 }
 
 const ButtonSelector = ({ articleInfo }: IButtonSelectorProps) => {

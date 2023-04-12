@@ -6,9 +6,10 @@ import routerMeta from '@/lib/routerMeta';
 import queryClient from '@/queries/queryClient';
 import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
 import convertToDate from '@/lib/utils/convertToDate';
+import { IArticle } from '@/interfaces/main';
 
 interface IFeedProps {
-  article: { [key: string]: any };
+  article: IArticle;
 }
 
 const Feed = ({ article }: IFeedProps) => {

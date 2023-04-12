@@ -2,9 +2,10 @@ import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
 import queryClient from '@/queries/queryClient';
 import { useDeleteArticleMutation } from '@/queries/articles.query';
 import { useNavigate } from 'react-router-dom';
+import { IArticle } from '@/interfaces/main';
 
 interface IButtonsWIthAccessProps {
-  articleInfo: { [key: string]: any };
+  articleInfo: IArticle;
 }
 
 const ButtonsWIthAccess = ({ articleInfo }: IButtonsWIthAccessProps) => {
