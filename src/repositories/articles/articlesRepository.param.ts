@@ -1,5 +1,9 @@
 export interface getArticlesParam {
-  query: string;
+  isGlobal?: boolean;
+  page: number;
+  selectedTag?: string;
+  username?: string;
+  isFavorited?: boolean;
 }
 
 export interface getArticleParam {

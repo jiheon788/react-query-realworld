@@ -1,6 +1,5 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import FeedList from '@/components/feed/FeedList';
 import { useGetArticlesQueries } from '@/queries/articles.query';
 import { UserContext } from '@/contexts/UserContextProvider';
@@ -10,18 +9,7 @@ const HomePage = () => {
   const [page, setPage] = useState(1);
   const [isGlobal, setIsGlobal] = useState(true);
   const [selectedTag, setSelectedTag] = useState('');
-  const [query, setQuery] = useState(`?limit=${UNIT_PER_PAGE}&offset=0`);
-  const [articlesInfo, tagsInfo] = useGetArticlesQueries(query);
-
-  useEffect(() => {
-    if (isGlobal) {
-      setQuery(
-        `?limit=${UNIT_PER_PAGE}&offset=${UNIT_PER_PAGE * (page - 1)}${selectedTag ? `&tag=${selectedTag}` : ''}`,
-      );
-    } else {
-      setQuery(`/feed?limit=${UNIT_PER_PAGE}&offset=${UNIT_PER_PAGE * (page - 1)}`);
-    }
-  }, [isGlobal, selectedTag, page]);
+  const [articlesInfo, tagsInfo] = useGetArticlesQueries(isGlobal, page, selectedTag);
 
   return (
     <div className="home-page">

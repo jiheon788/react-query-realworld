@@ -6,7 +6,7 @@ export const useGetUserQuery = () =>
   useQuery({
     queryKey: [QUERY_USER_KEY],
     queryFn: () => getUser().then((res) => res.data.user),
-    retry: false,
+    staleTime: 20000,
   });
 
 export const usePutUserMutation = () => useMutation(putUser);

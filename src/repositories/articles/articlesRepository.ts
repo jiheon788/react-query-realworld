@@ -10,11 +10,14 @@ import {
   deleteCommentParam,
   favoriteParam,
 } from './articlesRepository.param';
+import { UNIT_PER_PAGE } from '@/constants/units.constants';
 
-export const getArticles = async ({ query }: getArticlesParam) => {
+export const getArticles = async ({ isGlobal, selectedTag, page, username, isFavorited }: getArticlesParam) => {
   return await apiClient({
     method: 'get',
-    url: `/articles${query}`,
+    url: `/articles${isGlobal || username ? '' : '/feed'}?limit=${UNIT_PER_PAGE}&offset=${UNIT_PER_PAGE * (page - 1)}${
+      selectedTag ? `&tag=${selectedTag}` : ''
+    }${username ? `&${isFavorited ? 'favorited' : 'author'}=${username}` : ''}`,
   });
 };
 

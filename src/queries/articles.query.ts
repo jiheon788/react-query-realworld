@@ -14,16 +14,18 @@ import {
 import { getTags } from '@/repositories/tags/tagsRepository';
 import { useMutation, useQueries } from '@tanstack/react-query';
 
-export const useGetArticlesQueries = (query: string) => {
+export const useGetArticlesQueries = (isGlobal: boolean, page: number, selectedTag: string) => {
   return useQueries({
     queries: [
       {
-        queryKey: [QUERY_ARTICLES_KEY, query],
-        queryFn: () => getArticles({ query }).then((res) => res.data),
+        queryKey: [QUERY_ARTICLES_KEY, isGlobal, selectedTag, page],
+        queryFn: () => getArticles({ isGlobal, selectedTag, page }).then((res) => res.data),
+        staleTime: 20000,
       },
       {
         queryKey: [QUERY_TAG_KEY],
         queryFn: () => getTags().then((res) => res.data.tags),
+        staleTime: 20000,
       },
     ],
   });
@@ -35,12 +37,12 @@ export const useGetArticleQueries = (slug: string) => {
       {
         queryKey: [QUERY_ARTICLE_KEY, slug],
         queryFn: () => getArticle({ slug }).then((res) => res.data.article),
-        staleTime: Infinity,
+        staleTime: 20000,
       },
       {
         queryKey: [QUERY_COMMENTS_KEY, slug],
         queryFn: () => getComments({ slug }).then((res) => res.data.comments),
-        staleTime: Infinity,
+        staleTime: 20000,
       },
     ],
   });
