@@ -2,7 +2,7 @@ import useIsLoginContext from '@/lib/hooks/useIsLoginContext';
 import { createContext } from 'react';
 
 interface IUserContextProviderProps {
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
 }
 
 export const UserContext = createContext({} as ReturnType<typeof useIsLoginContext>);

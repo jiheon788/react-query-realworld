@@ -6,6 +6,7 @@ import ProtectedRoute from '@/components/HOC/ProtectedRoute';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from '@/components/ErrorFallback';
+import Layout from '@/components/common/Layout';
 
 const lazyImport = (pageName: string) => lazy(() => import(`@/pages/${pageName}`));
 
@@ -23,24 +24,28 @@ const Router = () => {
 
   return (
     <Routes>
-      {assignRouter.map(({ Component, props }) => (
-        <Route
-          key={props.path}
-          path={props.path}
-          element={
-            <ProtectedRoute path={props.path}>
-              <Suspense fallback={<LoadingFallback />}>
-                <ErrorBoundary
-                  onReset={reset}
-                  fallbackRender={({ resetErrorBoundary }) => <ErrorFallback resetErrorBoundary={resetErrorBoundary} />}
-                >
-                  <Component />
-                </ErrorBoundary>
-              </Suspense>
-            </ProtectedRoute>
-          }
-        />
-      ))}
+      <Route element={<Layout />}>
+        {assignRouter.map(({ Component, props }) => (
+          <Route
+            key={props.path}
+            path={props.path}
+            element={
+              <ProtectedRoute path={props.path}>
+                <Suspense fallback={<LoadingFallback />}>
+                  <ErrorBoundary
+                    onReset={reset}
+                    fallbackRender={({ resetErrorBoundary }) => (
+                      <ErrorFallback resetErrorBoundary={resetErrorBoundary} />
+                    )}
+                  >
+                    <Component />
+                  </ErrorBoundary>
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+        ))}
+      </Route>
     </Routes>
   );
 };
