@@ -41,6 +41,11 @@ apiClient.interceptors.response.use(
     const { status, data } = error.response;
     const { method, url } = error.config;
 
+    if (status === 429) {
+      token.removeToken('ACCESS_TOKEN_KEY');
+      window.location.reload();
+    }
+
     logOnDev(`🚨 [${method?.toUpperCase()}] ${url} | Error ${status} ${data?.message || ''} | ${message}`, error);
 
     return Promise.reject(error);

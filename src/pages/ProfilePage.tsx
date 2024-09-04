@@ -10,6 +10,8 @@ const ProfilePage = () => {
   const [isFavorited, setIsFavorited] = useState(false);
   const [profileInfo, articlesInfo] = useGetProfileQueries(state, page, isFavorited);
 
+  console.log(state);
+
   return (
     <div className="profile-page">
       <Profile profile={profileInfo.data} />
@@ -44,27 +46,10 @@ const ProfilePage = () => {
             </div>
 
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <FeedList
-                    articlesInfo={articlesInfo.data}
-                    toUrl={`/profile/${state}`}
-                    page={page}
-                    setPage={setPage}
-                  />
-                }
-              />
+              <Route path="/" element={<FeedList articlesInfo={articlesInfo.data} page={page} setPage={setPage} />} />
               <Route
                 path="/favorites"
-                element={
-                  <FeedList
-                    articlesInfo={articlesInfo.data}
-                    toUrl={`/profile/${state}`}
-                    page={page}
-                    setPage={setPage}
-                  />
-                }
+                element={<FeedList articlesInfo={articlesInfo.data} page={page} setPage={setPage} />}
               />
             </Routes>
           </div>

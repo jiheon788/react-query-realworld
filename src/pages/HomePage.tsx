@@ -45,7 +45,7 @@ const HomePage = () => {
                 </li>
               </ul>
             </div>
-            <FeedList articlesInfo={articlesInfo.data} toUrl={'/'} page={page} setPage={setPage} />
+            <FeedList articlesInfo={articlesInfo.data} page={page} setPage={setPage} />
           </div>
 
           <div className="col-md-3">

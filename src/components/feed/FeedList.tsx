@@ -1,7 +1,6 @@
 import { UNIT_PER_PAGE } from '@/constants/units.constants';
 import generateOneToNArray from '@/lib/utils/generateOneToNArray';
 import scrollToTop from '@/lib/utils/scrollToTop';
-import { NavLink } from 'react-router-dom';
 import Feed from './Feed';
 import { IArticle } from '@/interfaces/main';
 
@@ -10,12 +9,11 @@ interface IFeedListProps {
     articles: IArticle[];
     articlesCount: number;
   };
-  toUrl: string;
   page: number;
   setPage: (page: number) => void;
 }
 
-const FeedList = ({ articlesInfo, toUrl, page, setPage }: IFeedListProps) => {
+const FeedList = ({ articlesInfo, page, setPage }: IFeedListProps) => {
   const { articles, articlesCount } = articlesInfo;
 
   return (
@@ -42,9 +40,7 @@ const FeedList = ({ articlesInfo, toUrl, page, setPage }: IFeedListProps) => {
                   scrollToTop();
                 }}
               >
-                <NavLink to={toUrl} className="page-link">
-                  {value}
-                </NavLink>
+                <div className="page-link">{value}</div>
               </li>
             ))}
         </ul>
