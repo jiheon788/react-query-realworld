@@ -8,11 +8,17 @@ import { UserContext } from '@/contexts/UserContextProvider';
 import Comment from '@/components/article/Comment';
 import routerMeta from '@/lib/routerMeta';
 import convertToDate from '@/lib/utils/convertToDate';
+//import Revisions from '@/components/Revisions'; // ✅ Import Revisions
+import { useGetUserQuery } from '@/queries/user.query';
+import Revisions from '@/components/article/Revisions';
 
 const ArticlePage = () => {
   const { state } = useLocation();
   const [articleInfo, commentsInfo] = useGetArticleQueries(state);
-  const { isLogin } = useContext(UserContext);
+  const { isLogin } = useContext(UserContext); // ✅ Get user info for admin check
+  const { data } = useGetUserQuery();
+  const articleId = articleInfo.data.id;
+  const isAdmin = data?.is_admin || data?.id === articleInfo.data.author.id; // ✅ Check if user is admin or author
 
   return (
     <div className="article-page">
@@ -54,6 +60,11 @@ const ArticlePage = () => {
           ))}
         </div>
         <hr />
+
+        {/* ✅ Add Revisions Section */}
+        <div className="mt-6">
+          <Revisions articleId={articleId} isAdmin={isAdmin} />
+        </div>
 
         <div className="article-actions">
           <div className="article-meta">

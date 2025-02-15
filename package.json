@@ -56,6 +56,7 @@
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
     "@babel/preset-typescript": "^7.18.6",
+    "@types/react-toastify": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.32.0",
