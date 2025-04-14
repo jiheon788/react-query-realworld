@@ -2,7 +2,7 @@ import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import token from '@/lib/token';
 import axios, { AxiosResponse, InternalAxiosRequestConfig, AxiosError } from 'axios';
 
-const host = 'https://api.realworld.io/api';
+const host = 'http://127.0.0.1:8000/api';
 
 const apiClient = axios.create({
   baseURL: host,
@@ -19,7 +19,7 @@ apiClient.interceptors.request.use((request) => {
   const { method, url } = request;
 
   if (jwtToken) {
-    request.headers['Authorization'] = `Token ${jwtToken}`;
+    request.headers['Authorization'] = `Bearer ${jwtToken}`;
   }
 
   logOnDev(`🚀 [${method?.toUpperCase()}] ${url} | Request`, request);

@@ -1,7 +1,14 @@
-import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY, QUERY_COMMENTS_KEY, QUERY_TAG_KEY } from '@/constants/query.constant';
+import {
+  QUERY_ARTICLES_KEY,
+  QUERY_ARTICLE_KEY,
+  QUERY_ARTICLE_REVISIONS_KEY,
+  QUERY_COMMENTS_KEY,
+  QUERY_TAG_KEY,
+} from '@/constants/query.constant';
 import {
   getArticle,
   getArticles,
+  getArticleRevisions,
   createArticle,
   updateArticle,
   deleteArticle,
@@ -9,6 +16,7 @@ import {
   createComment,
   deleteComment,
   favoriteArticle,
+  restoreArticleRevision,
   unfavoriteArticle,
 } from '@/repositories/articles/articlesRepository';
 import { getTags } from '@/repositories/tags/tagsRepository';
@@ -48,6 +56,18 @@ export const useGetArticleQueries = (slug: string) => {
   });
 };
 
+export const useGetArticleRevisionsQueries = (slug: string) => {
+  return useQueries({
+    queries: [
+      {
+        queryKey: [QUERY_ARTICLE_KEY, slug],
+        queryFn: () => getArticleRevisions({ slug }).then((res) => res.data.revisions),
+        staleTime: 20000,
+      },
+    ],
+  });
+};
+
 export const useCreateArticleMutation = () => useMutation(createArticle);
 
 export const useUpdateArticleMutation = () => useMutation(updateArticle);
@@ -61,3 +81,5 @@ export const useDeleteCommentMutation = () => useMutation(deleteComment);
 export const useFavoriteArticleMutation = () => useMutation(favoriteArticle);
 
 export const useUnfavoriteArticleMutation = () => useMutation(unfavoriteArticle);
+
+export const useRevertArticleUpdateMutation = () => useMutation(restoreArticleRevision);

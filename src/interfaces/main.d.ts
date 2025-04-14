@@ -16,6 +16,22 @@ export interface IArticle {
   };
 }
 
+export interface IArticleRevision {
+  id: number;
+  articleId: number;
+  createdAt: string;
+  updatedAt: string;
+  articleData: {
+    id: number;
+    slug: string;
+    title: string;
+    description: string;
+    body: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
 export interface IComment {
   id: number;
   createdAt: string;

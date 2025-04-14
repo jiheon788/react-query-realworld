@@ -2,3 +2,6 @@
 /craco.config.js
 /__tests__
 /babel.config.js
+build/
+src/
+*.js
