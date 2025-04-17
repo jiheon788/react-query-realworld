@@ -1,4 +1,4 @@
-import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLES_KEY } from '@/constants/query.constants';
 import queryClient from '@/queries/queryClient';
 import { useDeleteArticleMutation } from '@/queries/articles.query';
 import { useNavigate } from 'react-router-dom';

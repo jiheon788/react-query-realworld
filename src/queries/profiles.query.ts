@@ -1,4 +1,4 @@
-import { QUERY_ARTICLES_KEY, QUERY_PROFILE_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLES_KEY, QUERY_PROFILE_KEY } from '@/constants/query.constants';
 import { getArticles } from '@/repositories/articles/articlesRepository';
 import { followUser, getProfile, unfollowUser } from '@/repositories/profiles/profileRepository';
 import { useMutation, useQueries } from '@tanstack/react-query';

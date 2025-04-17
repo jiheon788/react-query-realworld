@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
+import { ACCESS_TOKEN_KEY } from '@/constants/token.constants';
 import useInputs from '@/lib/hooks/useInputs';
 import routerMeta from '@/lib/routerMeta';
 import token from '@/lib/token';

@@ -1,4 +1,4 @@
-import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY, QUERY_COMMENTS_KEY, QUERY_TAG_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLES_KEY, QUERY_ARTICLE_KEY, QUERY_COMMENTS_KEY, QUERY_TAG_KEY } from '@/constants/query.constants';
 import {
   getArticle,
   getArticles,
