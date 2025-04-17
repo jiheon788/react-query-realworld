@@ -1,7 +1,7 @@
 import { useFavoriteArticleMutation, useUnfavoriteArticleMutation } from '@/queries/articles.query';
 import { useFollowUserMutation, useUnFollowUserMutation } from '@/queries/profiles.query';
 import queryClient from '@/queries/queryClient';
-import { QUERY_ARTICLE_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLE_KEY } from '@/constants/query.constants';
 import { IArticle } from '@/interfaces/main';
 
 interface IButtonsWIthoutAccessProps {

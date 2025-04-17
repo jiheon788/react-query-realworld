@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
+import { ACCESS_TOKEN_KEY } from '@/constants/token.constants';
 import token from '@/lib/token';
 import axios, { AxiosResponse, InternalAxiosRequestConfig, AxiosError } from 'axios';
 

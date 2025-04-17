@@ -2,7 +2,7 @@ import { useCreateCommentMutation, useDeleteCommentMutation } from '@/queries/ar
 import { useGetUserQuery } from '@/queries/user.query';
 import useInputs from '@/lib/hooks/useInputs';
 import queryClient from '@/queries/queryClient';
-import { QUERY_COMMENTS_KEY } from '@/constants/query.constant';
+import { QUERY_COMMENTS_KEY } from '@/constants/query.constants';
 import convertToDate from '@/lib/utils/convertToDate';
 import { IComment } from '@/interfaces/main';
 

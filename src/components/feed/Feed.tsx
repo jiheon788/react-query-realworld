@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { UserContext } from '@/contexts/UserContextProvider';
 import routerMeta from '@/lib/routerMeta';
 import queryClient from '@/queries/queryClient';
-import { QUERY_ARTICLES_KEY } from '@/constants/query.constant';
+import { QUERY_ARTICLES_KEY } from '@/constants/query.constants';
 import convertToDate from '@/lib/utils/convertToDate';
 import { IArticle } from '@/interfaces/main';
 
